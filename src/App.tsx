@@ -1,6 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { Braces } from "lucide-react";
 import Aside from "./components/aside";
 import CodeEditor from "./components/code-editor";
+import { Button } from "./components/ui/button";
 
 function App() {
   return (
@@ -9,6 +11,13 @@ function App() {
         <div className="relative flex flex-col h-screen overflow-hidden">
           <div className="flex-grow overflow-auto">
             <CodeEditor />
+          </div>
+          <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs">
+            <div className="ml-auto">
+              <Button className="rounded-none" size="sm" variant="ghost">
+                <Braces className="mr-1" size={14} /> Language
+              </Button>
+            </div>
           </div>
         </div>
 
