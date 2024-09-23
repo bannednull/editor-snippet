@@ -2,7 +2,11 @@ import { useTheme } from "@/components/theme-provider";
 import { langNames } from "@uiw/codemirror-extensions-langs";
 import { githubDarkInit, githubLightInit } from "@uiw/codemirror-theme-github";
 import type { CreateThemeOptions } from "@uiw/codemirror-themes";
-import type { BasicSetupOptions, Extension } from "@uiw/react-codemirror";
+import {
+  type BasicSetupOptions,
+  EditorView,
+  type Extension,
+} from "@uiw/react-codemirror";
 
 const basicSetup: BasicSetupOptions = {
   searchKeymap: false,
@@ -20,9 +24,14 @@ const themeExtension = (theme: string | undefined): Extension => {
     },
   };
 
-  return theme === "dark"
-    ? githubDarkInit(settings)
-    : githubLightInit(settings);
+  return [
+    theme === "dark" ? githubDarkInit(settings) : githubLightInit(settings),
+    EditorView.theme({
+      "&": {
+        height: "100%",
+      },
+    }),
+  ];
 };
 
 const supportedLanguages = [

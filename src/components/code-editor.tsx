@@ -14,6 +14,7 @@ export default function CodeEditor() {
 
   return (
     <CodeMirror
+      className="h-full"
       basicSetup={basicSetup}
       extensions={[loadLanguage("javascript")!]}
       theme={theme()}
