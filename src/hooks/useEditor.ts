@@ -1,6 +1,6 @@
 import { useTheme } from "@/components/theme-provider";
 import { type LanguageName, langNames } from "@uiw/codemirror-extensions-langs";
-import { githubDarkInit, githubLightInit } from "@uiw/codemirror-theme-github";
+import { vscodeDarkInit, vscodeLightInit } from "@uiw/codemirror-theme-vscode";
 import type { CreateThemeOptions } from "@uiw/codemirror-themes";
 import {
   type BasicSetupOptions,
@@ -25,7 +25,7 @@ const themeExtension = (theme: string | undefined): Extension => {
   };
 
   return [
-    theme === "dark" ? githubDarkInit(settings) : githubLightInit(settings),
+    theme === "dark" ? vscodeDarkInit(settings) : vscodeLightInit(settings),
     EditorView.theme({
       "&": {
         height: "100%",
