@@ -5,15 +5,16 @@ import CodeMirror from "@uiw/react-codemirror";
 import React from "react";
 
 export default function CodeEditor() {
-  const [code, setCode] = React.useState<string>("");
-
-  const onChange = React.useCallback((value: string) => {
-    setCode(value);
-  }, []);
-
   const { basicSetup, theme } = useEditor();
 
-  const { lang } = useSnippetStore((state) => state);
+  const { lang, code, setCode } = useSnippetStore((state) => state);
+
+  const onChange = React.useCallback(
+    (value: string) => {
+      setCode(value);
+    },
+    [setCode],
+  );
 
   return (
     <CodeMirror
