@@ -16,7 +16,7 @@ Este proyecto utiliza las siguientes tecnologías:
 
 ### ✅ Por hacer
 
-- [ ] Screenshots del código personalizado.
+- [ ] Screenshots del código personalizado. (wip)
 - [ ] Linter y formateador de código.
 - [ ] Backend: usuarios y autenticación.
 - [ ] Backend: base de datos para la gestión de snippets.

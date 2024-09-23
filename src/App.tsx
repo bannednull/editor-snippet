@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import Aside from "./components/aside";
+import Capture from "./components/capture";
 import CodeEditor from "./components/code-editor";
 import ComboLang from "./components/combo-lang";
 
@@ -12,6 +13,7 @@ function App() {
             <CodeEditor />
           </div>
           <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs">
+            <Capture />
             <div className="ml-auto">
               <ComboLang />
             </div>
