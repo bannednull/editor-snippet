@@ -14,5 +14,14 @@ Este proyecto utiliza las siguientes tecnologías:
 
 - Interfaz moderna: UI limpia y fácil de usar.
 
+### ✅ Por hacer
+
+- [ ] Screenshots del código personalizado.
+- [ ] Linter y formateador de código.
+- [ ] Backend: usuarios y autenticación.
+- [ ] Backend: base de datos para la gestión de snippets.
+- [ ] IA Chat sugerencias (openai).
+- [ ] Integración con GitHub.
+
 ### 📜 Licencia
 este proyecto está licenciado bajo la licencia GPL.
