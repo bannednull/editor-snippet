@@ -64,3 +64,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+.cm-lineNumbers {
+  min-width: 35px !important;
+}
+
+.cm-gutter {
+  min-width: 20px;
+}
+
+.ͼ4 .cm-line ::selection,
+.ͼ4 .cm-line::selection {
+  background-color: rgba(95, 154, 243, 0.4) !important;
+}
