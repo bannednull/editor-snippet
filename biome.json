@@ -8,13 +8,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [
-      "node_modules",
-      "dist",
-      "build",
-      "public",
-      "coverage"
-    ]
+    "ignore": ["node_modules", "dist", "build", "public", "coverage"]
   },
   "formatter": {
     "enabled": true,
@@ -51,9 +45,6 @@
       "attributePosition": "auto",
       "bracketSpacing": true
     },
-    "globals": [
-      "React",
-      "JSX"
-    ]
+    "globals": ["React", "JSX"]
   }
 }
