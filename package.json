@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@uiw/codemirror-extensions-langs": "^4.23.2",
     "@uiw/codemirror-theme-github": "^4.23.2",
     "@uiw/react-codemirror": "^4.23.2",
     "class-variance-authority": "^0.7.0",

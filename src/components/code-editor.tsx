@@ -1,4 +1,5 @@
 import useEditor from "@/hooks/useEditor";
+import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import CodeMirror from "@uiw/react-codemirror";
 import React from "react";
 
@@ -14,6 +15,7 @@ export default function CodeEditor() {
   return (
     <CodeMirror
       basicSetup={basicSetup}
+      extensions={[loadLanguage("javascript")!]}
       theme={theme()}
       value={code}
       onChange={onChange}

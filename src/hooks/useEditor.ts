@@ -1,4 +1,5 @@
 import { useTheme } from "@/components/theme-provider";
+import { langNames } from "@uiw/codemirror-extensions-langs";
 import { githubDarkInit, githubLightInit } from "@uiw/codemirror-theme-github";
 import type { CreateThemeOptions } from "@uiw/codemirror-themes";
 import type { BasicSetupOptions, Extension } from "@uiw/react-codemirror";
@@ -24,12 +25,37 @@ const themeExtension = (theme: string | undefined): Extension => {
     : githubLightInit(settings);
 };
 
+const supportedLanguages = [
+  "c",
+  "csharp",
+  "kotlin",
+  "typescript",
+  "html",
+  "css",
+  "python",
+  "markdown",
+  "sql",
+  "rust",
+  "java",
+  "cpp",
+  "go",
+  "ruby",
+  "php",
+  "javascript",
+  "dart",
+];
+
+const languageSupported = langNames
+  .filter((lang) => supportedLanguages.includes(lang))
+  .sort();
+
 const useEditor = () => {
   const { theme } = useTheme();
 
   return {
     basicSetup,
     theme: () => themeExtension(theme),
+    languageSupported,
   };
 };
 
