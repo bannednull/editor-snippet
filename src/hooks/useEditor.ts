@@ -11,12 +11,13 @@ import {
 const basicSetup: BasicSetupOptions = {
   searchKeymap: false,
   highlightActiveLineGutter: false,
+  highlightActiveLine: false,
 };
 
 const themeExtension = (theme: string | undefined): Extension => {
   const settings: Partial<CreateThemeOptions> = {
     settings: {
-      fontSize: ".9em",
+      fontSize: "1em",
       background: "hsl(var(--background))",
       gutterBackground: "hsl(var(--background))",
       selection: "transparent",
