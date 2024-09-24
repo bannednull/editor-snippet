@@ -7,7 +7,7 @@ import ComboLang from "./components/combo-lang";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="grid h-screen md:grid-cols-[330px,1fr]">
+      <div className="grid h-screen md:grid-cols-[300px,1fr]">
         <Aside />
 
         <div className="relative flex flex-col h-screen overflow-hidden">
