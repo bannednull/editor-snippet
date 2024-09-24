@@ -27,12 +27,12 @@ export default function DialogNew() {
 
   const NewSnippetButton = () => (
     <Button
-      className="w-full"
-      size="sm"
+      className="size-7 ml-auto"
+      size="icon"
       variant="secondary"
       onClick={() => (code ? setOpen(true) : handleNewSnippet())}
     >
-      <Plus className="mr-2" size={14} /> New Snippet
+      <Plus size={14} />
     </Button>
   );
 
