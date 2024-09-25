@@ -23,7 +23,11 @@ export default function ComboLang() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button className="rounded-none" size="sm" variant="ghost">
+        <Button
+          className="rounded-none py-0.5 px-1 size-auto hover:bg-none"
+          variant="ghost"
+          size="sm"
+        >
           <Braces className="mr-1" size={14} /> {capitalizeLangName(lang)}
         </Button>
       </PopoverTrigger>

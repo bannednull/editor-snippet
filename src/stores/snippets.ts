@@ -5,8 +5,12 @@ import { persist } from "zustand/middleware";
 interface SnippetState {
   lang: LanguageName;
   code: string;
+  line: number;
+  column: number;
   setLang: (lang: LanguageName) => void;
   setCode: (code: string) => void;
+  setLine: (line: number) => void;
+  setColumn: (column: number) => void;
 }
 
 export const useSnippetStore = create<SnippetState>()(
@@ -14,9 +18,16 @@ export const useSnippetStore = create<SnippetState>()(
     (set) => ({
       lang: "javascript",
       code: "",
+      line: 0,
+      column: 0,
       setLang: (lang) => set({ lang }),
       setCode: (code) => set({ code }),
+      setLine: (line) => set({ line }),
+      setColumn: (column) => set({ column }),
     }),
-    { name: "snippet" },
+    {
+      name: "snippet",
+      partialize: (state) => ({ lang: state.lang, code: state.code }),
+    },
   ),
 );

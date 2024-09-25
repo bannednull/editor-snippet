@@ -3,6 +3,7 @@ import Aside from "./components/aside";
 import Capture from "./components/capture";
 import CodeEditor from "./components/code-editor";
 import ComboLang from "./components/combo-lang";
+import LineColumn from "./components/line-column";
 
 function App() {
   return (
@@ -14,9 +15,12 @@ function App() {
           <div className="flex-grow overflow-auto">
             <CodeEditor />
           </div>
-          <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs">
+
+          <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs px-2">
             <Capture />
-            <div className="ml-auto">
+
+            <div className="ml-auto flex gap-3 items-center">
+              <LineColumn />
               <ComboLang />
             </div>
           </div>
