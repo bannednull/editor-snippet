@@ -3,6 +3,7 @@ import { useSnippetStore } from "@/stores/snippets";
 import { Plus } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import NewTooltip from "./tooltip";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -26,14 +27,16 @@ export default function DialogNew() {
   };
 
   const NewSnippetButton = () => (
-    <Button
-      className="size-7 ml-auto"
-      size="icon"
-      variant="secondary"
-      onClick={() => (code ? setOpen(true) : handleNewSnippet())}
-    >
-      <Plus size={14} />
-    </Button>
+    <NewTooltip content="Create new snippet" side="bottom" align="start">
+      <Button
+        className="size-7 ml-auto"
+        size="icon"
+        variant="secondary"
+        onClick={() => (code ? setOpen(true) : handleNewSnippet())}
+      >
+        <Plus size={14} />
+      </Button>
+    </NewTooltip>
   );
 
   return (
