@@ -1,5 +1,5 @@
+import { useFetcherWithReset } from "@/hooks/useUtils";
 import React from "react";
-import { useFetcher } from "react-router-dom";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -11,21 +11,35 @@ import {
 } from "./ui/dialog";
 import { Input } from "./ui/input";
 
-export default function SignIn({ children }: { children: React.ReactNode }) {
+export default function SignIn() {
+  const [isOpen, setIsOpen] = React.useState(false);
   const [sign, setSign] = React.useState(true);
 
-  const fetcher = useFetcher();
+  const fetcher = useFetcherWithReset<{ error: string; message: string }>();
   const url = sign ? "/login" : "/register";
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button
+          className="px-8"
+          size="sm"
+          variant="secondary"
+          onClick={() => {
+            setSign(true);
+            fetcher.reset();
+          }}
+        >
+          Sign in
+        </Button>
+      </DialogTrigger>
       <DialogContent className="max-w-sm w-full">
         <DialogHeader>
           <DialogTitle>{sign ? "Sign in" : "Sign up"}</DialogTitle>
           <DialogDescription>Retrieve your snippets</DialogDescription>
         </DialogHeader>
-        <fetcher.Form className="space-y-1" method="post" action={url}>
+
+        <fetcher.Form className="space-y-2" method="post" action={url}>
           {!sign && (
             <>
               <label className="block" htmlFor="name">
@@ -58,13 +72,24 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
             Send {fetcher.state === "submitting" && "⏳"}
           </Button>
 
+          {fetcher.data?.error && (
+            <p className="text-sm text-red-500">{fetcher.data?.error}</p>
+          )}
+
+          {fetcher.data?.message && (
+            <p className="text-sm text-green-500">{fetcher.data?.message}</p>
+          )}
+
           <p className="text-xs text-muted-foreground">
             {sign ? "Don't have an account ?" : "Already have an account ?"}
             <Button
               type="button"
               className="h-auto p-0 text-blue-500 ml-2"
               variant="link"
-              onClick={() => setSign((state) => !state)}
+              onClick={() => {
+                setSign((state) => !state);
+                fetcher.reset();
+              }}
             >
               {sign ? "Sign up it's free !" : "Sign in it's free !"}
             </Button>
