@@ -1,5 +1,5 @@
 import useEditor from "@/hooks/useEditor";
-import { useSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets";
 import type { LanguageName } from "@uiw/codemirror-extensions-langs";
 import { Braces } from "lucide-react";
 import React from "react";
@@ -18,7 +18,7 @@ export default function ComboLang() {
 
   const { languageSupported, capitalizeLangName } = useEditor();
 
-  const { lang, setLang } = useSnippetStore((state) => state);
+  const { lang, setLang } = createSnippetStore((state) => state);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

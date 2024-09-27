@@ -1,6 +1,6 @@
 import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
-import { useSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 import React from "react";
@@ -39,7 +39,7 @@ export default function Capture() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const { code, lang } = useSnippetStore((state) => state);
+  const { code, lang } = createSnippetStore((state) => state);
   const { theme } = useEditor();
 
   return (

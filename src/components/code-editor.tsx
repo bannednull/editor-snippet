@@ -1,5 +1,5 @@
 import useEditor from "@/hooks/useEditor";
-import { useSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import CodeMirror, { EditorView, type Extension } from "@uiw/react-codemirror";
 import React from "react";
@@ -7,7 +7,7 @@ import React from "react";
 export default function CodeEditor() {
   const { basicSetup, theme } = useEditor();
 
-  const { lang, code, setCode, setLine, setColumn } = useSnippetStore(
+  const { lang, code, setCode, setLine, setColumn } = createSnippetStore(
     (state) => state,
   );
 

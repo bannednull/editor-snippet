@@ -13,7 +13,7 @@ interface SnippetState {
   setColumn: (column: number) => void;
 }
 
-export const useSnippetStore = create<SnippetState>()(
+export const createSnippetStore = create<SnippetState>()(
   persist(
     (set) => ({
       lang: "javascript",
