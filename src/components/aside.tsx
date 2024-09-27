@@ -6,7 +6,7 @@ export default function Aside() {
   const { isAuth, email } = useUserStore();
 
   return (
-    <aside className="flex flex-col gap-2 border-r p-3 bg-muted/40">
+    <aside className="flex flex-col gap-2 border-r p-3 bg-muted">
       <div className="flex items-center">
         <img src="/logo.svg" alt="logo" className="size-7" />
         <p className="ml-2">Bakan</p>
