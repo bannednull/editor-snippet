@@ -1,4 +1,5 @@
 import { useTheme } from "@/components/theme-provider";
+import { createSnippetStore } from "@/stores/snippets";
 import { type LanguageName, langNames } from "@uiw/codemirror-extensions-langs";
 import { vscodeDarkInit, vscodeLightInit } from "@uiw/codemirror-theme-vscode";
 import type { CreateThemeOptions } from "@uiw/codemirror-themes";
@@ -6,6 +7,7 @@ import {
   type BasicSetupOptions,
   EditorView,
   type Extension,
+  keymap,
 } from "@uiw/react-codemirror";
 
 const basicSetup: BasicSetupOptions = {
@@ -75,14 +77,48 @@ const capitalizeLangName = (lang: LanguageName): string => {
   return specialCases[lang] || name;
 };
 
+const getSelection = (view: EditorView) => {
+  const { state } = view;
+  const range = state.selection.main;
+  const startLine = state.doc.lineAt(range.from).number;
+  const endLine = state.doc.lineAt(range.to).number;
+  const selected = state.doc.sliceString(range.from, range.to);
+  return { startLine, endLine, selected, isSelected: true };
+};
+
+const createSelection = (
+  set: (value: {
+    startLine: number;
+    endLine: number;
+    selected: string;
+    isSelected: boolean;
+  }) => void,
+): Extension => {
+  return keymap.of([
+    {
+      key: "Ctrl-k",
+      run: (view: EditorView) => {
+        const selected = getSelection(view);
+        set(selected);
+        return true;
+      },
+    },
+  ]);
+};
+
 const useEditor = () => {
   const { theme } = useTheme();
+
+  const { setSelection } = createSnippetStore((state) => state);
+
+  const selectedWrap = (): Extension => createSelection(setSelection);
 
   return {
     basicSetup,
     theme: () => themeExtension(theme),
     languageSupported,
     capitalizeLangName,
+    selectedWrap,
   };
 };
 

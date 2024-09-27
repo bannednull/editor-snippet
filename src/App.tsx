@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Aside from "./components/aside";
 import Capture from "./components/capture";
 import CodeEditor from "./components/code-editor";
+import CodeSuggestion from "./components/code-suggestion";
 import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
 import SessionProvider from "./components/session-provider";
@@ -12,13 +13,14 @@ function App() {
       <SessionProvider>
         <div className="grid h-screen md:grid-cols-[300px,1fr]">
           <Aside />
+          <CodeSuggestion />
 
           <div className="relative flex flex-col h-screen overflow-hidden">
             <div className="flex-grow overflow-auto">
               <CodeEditor />
             </div>
 
-            <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs px-2">
+            <div className="bg-black/40 py-1 text-muted-foreground border-t flex items-center text-xs px-2">
               <Capture />
 
               <div className="ml-auto flex gap-3 items-center">

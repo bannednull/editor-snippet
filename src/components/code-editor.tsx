@@ -5,7 +5,7 @@ import CodeMirror, { EditorView, type Extension } from "@uiw/react-codemirror";
 import React from "react";
 
 export default function CodeEditor() {
-  const { basicSetup, theme } = useEditor();
+  const { basicSetup, theme, selectedWrap } = useEditor();
 
   const { lang, code, setCode, setLine, setColumn } = createSnippetStore(
     (state) => state,
@@ -38,7 +38,7 @@ export default function CodeEditor() {
     <CodeMirror
       className="h-full"
       basicSetup={basicSetup}
-      extensions={[loadLanguage(lang)!, onCursor()]}
+      extensions={[loadLanguage(lang)!, onCursor(), selectedWrap()]}
       theme={theme()}
       value={code}
       onChange={onChange}
