@@ -4,28 +4,31 @@ import Capture from "./components/capture";
 import CodeEditor from "./components/code-editor";
 import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
+import SessionProvider from "./components/session-provider";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="grid h-screen md:grid-cols-[300px,1fr]">
-        <Aside />
+      <SessionProvider>
+        <div className="grid h-screen md:grid-cols-[300px,1fr]">
+          <Aside />
 
-        <div className="relative flex flex-col h-screen overflow-hidden">
-          <div className="flex-grow overflow-auto">
-            <CodeEditor />
-          </div>
+          <div className="relative flex flex-col h-screen overflow-hidden">
+            <div className="flex-grow overflow-auto">
+              <CodeEditor />
+            </div>
 
-          <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs px-2">
-            <Capture />
+            <div className="bg-black/70 text-muted-foreground border-t flex items-center text-xs px-2">
+              <Capture />
 
-            <div className="ml-auto flex gap-3 items-center">
-              <LineColumn />
-              <ComboLang />
+              <div className="ml-auto flex gap-3 items-center">
+                <LineColumn />
+                <ComboLang />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </SessionProvider>
     </ThemeProvider>
   );
 }

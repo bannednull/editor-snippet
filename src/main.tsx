@@ -6,7 +6,7 @@ import NotFound from "./components/not-found.tsx";
 import "./index.css";
 import { login, register } from "./api/auth.ts";
 import ErrorPage from "./error-page.tsx";
-import { useUsersStore } from "./stores/users.ts";
+import { createUserStore } from "./stores/users.ts";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +55,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     action: async ({ request }) => {
-      const { setUsers } = useUsersStore.getState();
-
       const formData = await request.formData();
 
       const email = formData.get("email") as string;
@@ -70,7 +68,12 @@ const router = createBrowserRouter([
               password,
             });
 
-          setUsers(user.name, user.email, user.token);
+          createUserStore.setState({
+            isAuth: true,
+            name: user.name,
+            email: user.email,
+            token: user.token,
+          });
 
           return { message: "Logged in successfully" };
         } catch (error) {
