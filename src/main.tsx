@@ -4,8 +4,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import NotFound from "./components/not-found.tsx";
 import "./index.css";
-import { register } from "./api/auth.ts";
+import { login, register } from "./api/auth.ts";
 import ErrorPage from "./error-page.tsx";
+import { useUsersStore } from "./stores/users.ts";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,40 @@ const router = createBrowserRouter([
         }
       }
       return { error: "Complete the form" };
+    },
+  },
+  {
+    path: "/login",
+    action: async ({ request }) => {
+      const { setUsers } = useUsersStore.getState();
+
+      const formData = await request.formData();
+
+      const email = formData.get("email") as string;
+      const password = formData.get("password") as string;
+
+      if (email && password) {
+        try {
+          const user: { name: string; email: string; token: string } =
+            await login({
+              email,
+              password,
+            });
+
+          setUsers(user.name, user.email, user.token);
+
+          return { message: "Logged in successfully" };
+        } catch (error) {
+          if (error instanceof Error) {
+            return { error: error?.message };
+          }
+        }
+        return { error: "Invalid email or password" };
+      }
+
+      return {
+        error: "Complete the form",
+      };
     },
   },
   {
