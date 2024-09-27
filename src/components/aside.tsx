@@ -1,9 +1,10 @@
+import { getFirstLetter } from "@/lib/utils";
 import { useUserStore } from "@/stores/users";
 import DialogNew from "./dialog-new";
 import SignIn from "./sign-in";
 
 export default function Aside() {
-  const { isAuth, email } = useUserStore();
+  const { isAuth, email, name } = useUserStore();
 
   return (
     <aside className="flex flex-col gap-2 border-r p-3 bg-muted">
@@ -25,7 +26,12 @@ export default function Aside() {
           <SignIn />
         </div>
       ) : (
-        email
+        <p className="text-muted-foreground text-sm flex items-center gap-2">
+          <span className="leading-tight text-white font-bold flex items-center justify-center rounded-md bg-background h-8 w-8">
+            {getFirstLetter(name)}
+          </span>
+          {email}
+        </p>
       )}
     </aside>
   );
