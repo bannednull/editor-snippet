@@ -1,4 +1,3 @@
-import { generateToken } from "@/lib/utils";
 import { createSnippetStore } from "@/stores/snippets";
 import { Plus } from "lucide-react";
 import React from "react";
@@ -25,8 +24,7 @@ export default function DialogNew() {
   const handleNewSnippet = () => {
     setOpen(false);
     createSnippetStore.setState({ code: "" });
-    const token = generateToken(16);
-    navigate(`/new/${token}`);
+    navigate("/");
   };
 
   const NewSnippetButton = () => (
