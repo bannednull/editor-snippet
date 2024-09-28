@@ -11,6 +11,7 @@ export interface SelectEditor {
 interface SnippetState {
   lang: LanguageName;
   code: string;
+  title: string;
   line: number;
   column: number;
   selection: SelectEditor;
@@ -20,6 +21,7 @@ interface SnippetState {
 export const createSnippetStore = create<SnippetState>()((set) => ({
   lang: "javascript",
   code: "",
+  title: "",
   line: 0,
   column: 0,
   selection: { startLine: 0, endLine: 0, selected: "", isSelected: false },

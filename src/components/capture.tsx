@@ -125,7 +125,7 @@ export default function Capture() {
         </SheetContent>
       </Sheet>
 
-      <p className="text-xs flex items-center gap-1 px-2">
+      <p className="text-sm flex items-center gap-1 px-2">
         Capture
         <kbd className="pointer-events-none inline-flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium text-muted-foreground">
           <span>alt</span> + c

@@ -5,6 +5,7 @@ import CodeEditor from "./components/code-editor";
 import CodeSuggestion from "./components/code-suggestion";
 import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
+import SaveSnippet from "./components/save-snippet";
 import SessionProvider from "./components/session-provider";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
             <div className="bg-black/40 py-1 text-muted-foreground border-t flex items-center text-xs px-2">
               <Capture />
+              <SaveSnippet />
 
               <div className="ml-auto flex gap-3 items-center">
                 <LineColumn />

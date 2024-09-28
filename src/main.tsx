@@ -5,7 +5,9 @@ import App from "./App.tsx";
 import NotFound from "./components/not-found.tsx";
 import "./index.css";
 import { login, register } from "./api/auth.ts";
+import { upsertSnippet } from "./api/snippet.ts";
 import ErrorPage from "./error-page.tsx";
+import { createSnippetStore } from "./stores/snippets.ts";
 import { createUserStore } from "./stores/users.ts";
 
 const router = createBrowserRouter([
@@ -87,6 +89,23 @@ const router = createBrowserRouter([
       return {
         error: "Complete the form",
       };
+    },
+  },
+  {
+    path: "/snippet",
+    action: async ({ request }) => {
+      const formData = await request.formData();
+      const snippet = createSnippetStore;
+      const title = formData.get("title") as string;
+      const lang = snippet.getState().lang;
+      const code = snippet.getState().code;
+
+      if (!title || !lang || !code) {
+        return { error: "Complete the form" };
+      }
+
+      upsertSnippet({ lang, code, title });
+      return null;
     },
   },
   {
