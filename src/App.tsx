@@ -7,6 +7,7 @@ import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
 import SaveSnippet from "./components/save-snippet";
 import SessionProvider from "./components/session-provider";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
             </div>
           </div>
         </div>
+
+        <Toaster />
       </SessionProvider>
     </ThemeProvider>
   );
