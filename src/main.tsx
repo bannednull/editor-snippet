@@ -15,76 +15,77 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-    children: [],
-  },
-  {
-    path: "/register",
-    action: async ({ request }) => {
-      const formData = await request.formData();
+    children: [
+      {
+        path: "register",
+        action: async ({ request }) => {
+          const formData = await request.formData();
 
-      const name = formData.get("name") as string;
-      const email = formData.get("email") as string;
-      const password = formData.get("password") as string;
-      const repeat = formData.get("repassword") as string;
+          const name = formData.get("name") as string;
+          const email = formData.get("email") as string;
+          const password = formData.get("password") as string;
+          const repeat = formData.get("repassword") as string;
 
-      if (name && email && password && repeat) {
-        if (password !== repeat) {
-          return { error: "Passwords don't match" };
-        }
-        try {
-          await register({
-            name,
-            email,
-            password,
-            repassword: repeat,
-          });
+          if (name && email && password && repeat) {
+            if (password !== repeat) {
+              return { error: "Passwords don't match" };
+            }
+            try {
+              await register({
+                name,
+                email,
+                password,
+                repassword: repeat,
+              });
 
-          return { message: "Registered successfully" };
-        } catch (error) {
-          if (error instanceof Error) {
-            return { error: error?.message };
+              return { message: "Registered successfully" };
+            } catch (error) {
+              if (error instanceof Error) {
+                return { error: error?.message };
+              }
+            }
           }
-        }
-      }
-      return { error: "Complete the form" };
-    },
-  },
-  {
-    path: "/login",
-    action: async ({ request }) => {
-      const formData = await request.formData();
+          return { error: "Complete the form" };
+        },
+      },
+      {
+        path: "login",
+        action: async ({ request }) => {
+          const formData = await request.formData();
 
-      const email = formData.get("email") as string;
-      const password = formData.get("password") as string;
+          const email = formData.get("email") as string;
+          const password = formData.get("password") as string;
 
-      if (email && password) {
-        try {
-          const user: { name: string; email: string; token: string } =
-            await login({
-              email,
-              password,
-            });
+          if (email && password) {
+            try {
+              const user: { name: string; email: string; token: string } =
+                await login({
+                  email,
+                  password,
+                });
 
-          createUserStore.setState({
-            isAuth: true,
-            name: user.name,
-            email: user.email,
-            token: user.token,
-          });
+              createUserStore.setState({
+                isAuth: true,
+                name: user.name,
+                email: user.email,
+                token: user.token,
+              });
 
-          return { message: "Logged in successfully" };
-        } catch (error) {
-          if (error instanceof Error) {
-            return { error: error?.message };
+              return { message: "Logged in successfully" };
+            } catch (error) {
+              if (error instanceof Error) {
+                return { error: error?.message };
+              }
+            }
+            return { error: "Invalid email or password" };
           }
-        }
-        return { error: "Invalid email or password" };
-      }
 
-      return {
-        error: "Complete the form",
-      };
-    },
+          return {
+            error: "Complete the form",
+          };
+        },
+      },
+    ],
   },
   {
     path: "/snippet",
