@@ -31,6 +31,9 @@
       "style": {
         "noNonNullAssertion": "off"
       },
+      "complexity": {
+        "noForEach": "off"
+      },
       "suspicious": {
         "noArrayIndexKey": "off"
       }
