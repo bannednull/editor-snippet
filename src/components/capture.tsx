@@ -10,6 +10,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetOverlay,
+  SheetTitle,
 } from "./ui/sheet";
 
 const bgColors = [
@@ -48,11 +49,11 @@ export default function Capture() {
         <SheetOverlay />
         <SheetContent side="right" className="md:min-w-[580px] overflow-auto">
           <SheetHeader>
-            <h2 className="text-lg font-semibold">Preview</h2>
+            <SheetTitle className="text-lg font-semibold">Preview</SheetTitle>
+            <SheetDescription className="mb-4">
+              Capture the current code.
+            </SheetDescription>
           </SheetHeader>
-          <SheetDescription className="mb-4">
-            Capture the current code.
-          </SheetDescription>
 
           <div
             className="rounded-xl mt-4"
