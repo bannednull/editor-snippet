@@ -14,6 +14,8 @@ export default function SaveSnippet() {
     [],
   );
 
+  const status = fetcher.state === "submitting";
+
   return (
     <fetcher.Form method="post" action="/snippet" className="space-x-1">
       <input
@@ -27,7 +29,7 @@ export default function SaveSnippet() {
         type="submit"
         className="bg-blue-700 text-white py-1 px-3 rounded-md"
       >
-        Save
+        Save {status && "⏳"}
       </button>
     </fetcher.Form>
   );
