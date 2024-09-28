@@ -1,7 +1,12 @@
 import { createSnippetStore } from "@/stores/snippets";
+import { useShallow } from "zustand/shallow";
 
 export default function LineColumn() {
-  const { line, column } = createSnippetStore((state) => state);
+  console.log("RENDER LINE COLUMN");
+  const { line, column } = createSnippetStore(
+    useShallow((state) => ({ line: state.line, column: state.column })),
+  );
+
   return (
     <p className="text-sm">
       Ln {line}, Col {column}

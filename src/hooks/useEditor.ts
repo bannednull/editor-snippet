@@ -86,20 +86,13 @@ const getSelection = (view: EditorView) => {
   return { startLine, endLine, selected, isSelected: true };
 };
 
-const createSelection = (
-  set: (value: {
-    startLine: number;
-    endLine: number;
-    selected: string;
-    isSelected: boolean;
-  }) => void,
-): Extension => {
+const chatSuggestion = (): Extension => {
   return keymap.of([
     {
       key: "Ctrl-k",
       run: (view: EditorView) => {
         const selected = getSelection(view);
-        set(selected);
+        createSnippetStore.setState({ selection: selected });
         return true;
       },
     },
@@ -109,16 +102,12 @@ const createSelection = (
 const useEditor = () => {
   const { theme } = useTheme();
 
-  const { setSelection } = createSnippetStore((state) => state);
-
-  const selectedWrap = (): Extension => createSelection(setSelection);
-
   return {
     basicSetup,
     theme: () => themeExtension(theme),
     languageSupported,
     capitalizeLangName,
-    selectedWrap,
+    chatSuggestion,
   };
 };
 

@@ -18,7 +18,7 @@ export default function ComboLang() {
 
   const { languageSupported, capitalizeLangName } = useEditor();
 
-  const { lang, setLang } = createSnippetStore((state) => state);
+  const lang = createSnippetStore((state) => state.lang);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -41,7 +41,9 @@ export default function ComboLang() {
                   key={lang}
                   value={lang}
                   onSelect={(currentValue) => {
-                    setLang(currentValue as LanguageName);
+                    createSnippetStore.setState({
+                      lang: currentValue as LanguageName,
+                    });
                     setOpen(false);
                   }}
                 >

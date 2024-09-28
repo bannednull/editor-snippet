@@ -3,6 +3,7 @@ import { createSnippetStore } from "@/stores/snippets";
 import { Plus } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useShallow } from "zustand/shallow";
 import NewTooltip from "./tooltip";
 import { Button } from "./ui/button";
 import {
@@ -16,12 +17,14 @@ import {
 
 export default function DialogNew() {
   const [open, setOpen] = React.useState(false);
+
   const navigate = useNavigate();
-  const { code, setCode } = createSnippetStore((state) => state);
+
+  const code = createSnippetStore(useShallow((state) => state.code));
 
   const handleNewSnippet = () => {
     setOpen(false);
-    setCode("");
+    createSnippetStore.setState({ code: "" });
     const token = generateToken(16);
     navigate(`/new/${token}`);
   };
