@@ -18,7 +18,7 @@ Este proyecto utiliza las siguientes tecnologías:
 
 - [ ] Screenshots del código personalizado. (wip)
 - [ ] Linter y formateador de código.
-- [ ] Backend: usuarios y autenticación.
+- [x] Backend: usuarios y autenticación.
 - [ ] Backend: base de datos para la gestión de snippets.
 - [ ] IA Chat sugerencias (openai).
 - [ ] Integración con GitHub.
