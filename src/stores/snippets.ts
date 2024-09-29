@@ -1,3 +1,4 @@
+import type { Snippet } from "@/api/snippet";
 import type { LanguageName } from "@uiw/codemirror-extensions-langs";
 import { create } from "zustand";
 
@@ -16,6 +17,7 @@ interface SnippetState {
   column: number;
   selection: SelectEditor;
   setIsSelected: (isSelected: boolean) => void;
+  setSnippet: (snippet: Snippet) => void;
 }
 
 export const createSnippetStore = create<SnippetState>()((set) => ({
@@ -27,4 +29,12 @@ export const createSnippetStore = create<SnippetState>()((set) => ({
   selection: { startLine: 0, endLine: 0, selected: "", isSelected: false },
   setIsSelected: (isSelected) =>
     set((state) => ({ selection: { ...state.selection, isSelected } })),
+  setSnippet: (snippet) =>
+    set(() => ({
+      lang: snippet.lang as LanguageName,
+      code: snippet.code,
+      title: snippet.title,
+      line: 1,
+      column: 1,
+    })),
 }));

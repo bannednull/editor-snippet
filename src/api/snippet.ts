@@ -1,5 +1,6 @@
 import { createSnippetStore } from "@/stores/snippets";
 import { createUserStore } from "@/stores/users";
+import type { Params } from "react-router-dom";
 
 export type Snippet = {
   id: number;
@@ -57,5 +58,27 @@ export async function getAllSnippets(): Promise<Snippet[]> {
   }
 
   const result: Promise<Snippet[]> = await response.json();
+  return result;
+}
+
+export async function getSnippetById({
+  params,
+}: { params: Params<string> }): Promise<Snippet> {
+  const id = params.snippetId;
+  const token = createUserStore.getState().token;
+
+  const response = await fetch(`/api/snippet/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Something went wrong");
+  }
+
+  const result: Promise<Snippet> = await response.json();
   return result;
 }
