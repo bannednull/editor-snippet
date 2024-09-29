@@ -1,6 +1,7 @@
 import { getFirstLetter } from "@/lib/utils";
 import { useUserStore } from "@/stores/users";
 import DialogNew from "./dialog-new";
+import { ListSnippet } from "./list-snippet";
 import SignIn from "./sign-in";
 
 export default function Aside() {
@@ -14,6 +15,8 @@ export default function Aside() {
 
         <DialogNew />
       </div>
+
+      <ListSnippet />
 
       <hr className="mt-auto" />
 
