@@ -4,7 +4,6 @@ import React from "react";
 import { useShallow } from "zustand/shallow";
 
 export default function SaveSnippet() {
-  console.log("TITLE SNIPPET");
   const { title } = createSnippetStore(
     useShallow((state) => ({ title: state.title })),
   );

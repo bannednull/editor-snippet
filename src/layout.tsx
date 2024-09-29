@@ -18,9 +18,7 @@ function Layout() {
           <CodeSuggestion />
 
           <div className="relative flex flex-col h-screen overflow-hidden">
-            <div className="flex-grow overflow-auto">
-              <Outlet />
-            </div>
+            <Outlet />
 
             <div className="bg-black/40 py-1 text-muted-foreground border-t flex items-center text-xs px-2">
               <Capture />

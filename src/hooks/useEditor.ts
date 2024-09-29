@@ -86,7 +86,7 @@ const getSelection = (view: EditorView) => {
   return { startLine, endLine, selected, isSelected: true };
 };
 
-const chatSuggestion = (): Extension => {
+export const chatSuggestion = (): Extension => {
   return keymap.of([
     {
       key: "Ctrl-k",
@@ -99,6 +99,21 @@ const chatSuggestion = (): Extension => {
   ]);
 };
 
+export const onCursor = (): Extension => {
+  return EditorView.updateListener.of((update) => {
+    if (update.selectionSet) {
+      const line = update.state.doc.lineAt(
+        update.state.selection.main.head,
+      ).number;
+      const column =
+        update.state.selection.ranges[0].head -
+        update.state.doc.lineAt(update.state.selection.main.head).from +
+        1;
+      createSnippetStore.setState({ line, column });
+    }
+  });
+};
+
 const useEditor = () => {
   const { theme } = useTheme();
 
@@ -107,7 +122,6 @@ const useEditor = () => {
     theme: () => themeExtension(theme),
     languageSupported,
     capitalizeLangName,
-    chatSuggestion,
   };
 };
 
