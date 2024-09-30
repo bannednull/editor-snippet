@@ -1,7 +1,9 @@
 import { useFetcherWithReset } from "@/hooks/useUtils";
 import { createSnippetStore } from "@/stores/snippets";
+import { Save } from "lucide-react";
 import React from "react";
 import { useShallow } from "zustand/shallow";
+import { Button } from "./ui/button";
 
 export default function SaveSnippet() {
   const { title } = createSnippetStore(
@@ -22,21 +24,28 @@ export default function SaveSnippet() {
   const status = fetcher.state === "submitting";
 
   return (
-    <fetcher.Form method="post" action="/snippet" className="space-x-1">
-      <input
-        name="title"
-        type="text"
-        className="bg-transparent py-1 px-3 border rounded-md w-[270px]"
-        placeholder="describe your snippet..."
-        value={title}
-        onChange={onChange}
-      />
-      <button
-        type="submit"
-        className="bg-blue-700 text-white py-1 px-3 rounded-md"
+    <div className="bg-black/40 flex items-center border-b p-2">
+      <fetcher.Form
+        method="post"
+        action="/snippet"
+        className="flex items-center w-full gap-3"
       >
-        Save {status && "⏳"}
-      </button>
-    </fetcher.Form>
+        <input
+          name="title"
+          type="text"
+          className="bg-transparent py-1 px-3 focus:outline-none w-full text-sm"
+          placeholder="Untitled snippet"
+          value={title}
+          onChange={onChange}
+        />
+        <Button
+          type="submit"
+          variant="ghost"
+          className="py-1 px-3 h-auto rounded-md flex items-center text-sm ml-auto"
+        >
+          <Save className="mr-1" size={16} /> Save {status && "⏳"}
+        </Button>
+      </fetcher.Form>
+    </div>
   );
 }

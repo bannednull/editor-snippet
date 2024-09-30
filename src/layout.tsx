@@ -17,15 +17,13 @@ function Layout() {
           <CodeSuggestion />
 
           <div className="relative flex flex-col h-screen overflow-hidden">
+            <SaveSnippet />
+
             <Outlet />
 
-            <div className="bg-black/40 py-1 text-muted-foreground border-t flex items-center text-xs px-2">
-              <SaveSnippet />
-
-              <div className="ml-auto flex gap-3 items-center">
-                <LineColumn />
-                <ComboLang />
-              </div>
+            <div className="bg-black/40 text-muted-foreground border-t flex items-center gap-2 text-xs px-2">
+              <LineColumn />
+              <ComboLang />
             </div>
           </div>
         </div>
