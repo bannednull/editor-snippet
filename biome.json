@@ -55,5 +55,10 @@
       "bracketSpacing": true
     },
     "globals": ["React", "JSX"]
-  }
+  },
+  "overrides": [
+    {
+      "include": ["*.ts?(x)", "*.js?(x)", "*.mjs"]
+    }
+  ]
 }
