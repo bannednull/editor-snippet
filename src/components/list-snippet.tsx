@@ -1,4 +1,5 @@
 import type { Snippet } from "@/api/snippet";
+import iconLang from "@/components/lang";
 import React from "react";
 import { Link, useFetcher } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
@@ -23,16 +24,20 @@ export const ListSnippet = () => {
           <Skeleton key={i} className="w-full h-6 bg-background my-1" />
         ))}
 
-      {fetcher.data?.map((snippet) => (
-        <li key={snippet.id}>
-          <Link
-            to={`/${snippet.uuid}`}
-            className="p-2 block hover:bg-background rounded-md"
-          >
-            {snippet.title}
-          </Link>
-        </li>
-      ))}
+      {fetcher.data?.map((snippet) => {
+        const IconComponent = iconLang[snippet.lang] || null;
+        return (
+          <li key={snippet.id}>
+            <Link
+              to={`/${snippet.uuid}`}
+              className="p-2 flex items-start gap-2 hover:bg-background rounded-md text-muted-foreground leading-none"
+            >
+              {IconComponent && <IconComponent />}
+              <span className="leading-tight">{snippet.title}</span>
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };
