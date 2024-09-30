@@ -5,8 +5,11 @@ import { Link, useFetcher } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
 
 export const ListSnippet = () => {
-  const fetcher = useFetcher<Snippet[]>({ key: "snippets" });
   const [hasLoaded, setHasLoaded] = React.useState(false);
+
+  const fetcher = useFetcher<Snippet[] | { error: string }>({
+    key: "snippets",
+  });
 
   React.useEffect(() => {
     if (fetcher.state === "idle" && !fetcher.data) {
@@ -15,6 +18,10 @@ export const ListSnippet = () => {
       setHasLoaded(true);
     }
   }, [fetcher]);
+
+  if (fetcher.data && "error" in fetcher.data) {
+    return null;
+  }
 
   return (
     <ul className="flex flex-col gap-0.5 mt-5">

@@ -1,7 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Outlet } from "react-router-dom";
 import Aside from "./components/aside";
-import Capture from "./components/capture";
 import CodeSuggestion from "./components/code-suggestion";
 import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
@@ -21,7 +20,6 @@ function Layout() {
             <Outlet />
 
             <div className="bg-black/40 py-1 text-muted-foreground border-t flex items-center text-xs px-2">
-              <Capture />
               <SaveSnippet />
 
               <div className="ml-auto flex gap-3 items-center">

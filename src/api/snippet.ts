@@ -35,7 +35,7 @@ export async function upsertSnippet({ request }: { request: Request }) {
   });
 
   if (!response.ok) {
-    throw new Error("Something went wrong");
+    return { error: "Something went wrong" };
   }
 
   const result: Promise<Snippet> = await response.json();
@@ -43,7 +43,7 @@ export async function upsertSnippet({ request }: { request: Request }) {
   return result;
 }
 
-export async function getAllSnippets(): Promise<Snippet[]> {
+export async function getAllSnippets(): Promise<Snippet[] | { error: string }> {
   const token = createUserStore.getState().token;
   const response = await fetch("/api/snippet", {
     method: "GET",
@@ -54,7 +54,7 @@ export async function getAllSnippets(): Promise<Snippet[]> {
   });
 
   if (!response.ok) {
-    throw new Error("Something went wrong");
+    return { error: "Something went wrong" };
   }
 
   const result: Promise<Snippet[]> = await response.json();
@@ -63,7 +63,7 @@ export async function getAllSnippets(): Promise<Snippet[]> {
 
 export async function getSnippetById({
   params,
-}: { params: Params<string> }): Promise<Snippet> {
+}: { params: Params<string> }): Promise<Snippet | { error: string }> {
   const id = params.snippetId;
   const token = createUserStore.getState().token;
 
@@ -76,7 +76,7 @@ export async function getSnippetById({
   });
 
   if (!response.ok) {
-    throw new Error("Something went wrong");
+    return { error: "Something went wrong" };
   }
 
   const result: Promise<Snippet> = await response.json();
