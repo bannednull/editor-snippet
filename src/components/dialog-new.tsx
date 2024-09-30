@@ -23,7 +23,13 @@ export default function DialogNew() {
 
   const handleNewSnippet = () => {
     setOpen(false);
-    createSnippetStore.setState({ code: "" });
+    createSnippetStore.setState({
+      code: "",
+      lang: "javascript",
+      title: "",
+      line: 0,
+      column: 0,
+    });
     navigate("/");
   };
 
