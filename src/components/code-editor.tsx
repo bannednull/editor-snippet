@@ -8,11 +8,13 @@ import { useShallow } from "zustand/shallow";
 export const CodeEditor = () => {
   const { basicSetup, theme } = useEditor();
 
-  const code = createSnippetStore(useShallow((state) => state.code));
+  const { code, lang } = createSnippetStore(
+    useShallow((state) => ({ code: state.code, lang: state.lang })),
+  );
 
   const extensions = React.useMemo(
-    () => [loadLanguage("javascript")!, onCursor(), chatSuggestion()],
-    [],
+    () => [loadLanguage(lang)!, onCursor(), chatSuggestion()],
+    [lang],
   );
 
   const handleChange = React.useCallback((value: string) => {
@@ -20,17 +22,15 @@ export const CodeEditor = () => {
   }, []);
 
   return (
-    <div className="flex-grow">
-      <CodeMirror
-        className="h-full"
-        basicSetup={basicSetup}
-        extensions={extensions}
-        theme={theme()}
-        value={code}
-        readOnly={false}
-        onChange={handleChange}
-      />
-    </div>
+    <CodeMirror
+      className="h-full"
+      basicSetup={basicSetup}
+      extensions={extensions}
+      theme={theme()}
+      value={code}
+      readOnly={false}
+      onChange={handleChange}
+    />
   );
 };
 
