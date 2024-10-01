@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         action: login,
       },
       {
-        path: ":snippetId",
+        path: ":user/:snippetId",
         loader: getSnippetById,
         element: <App />,
       },

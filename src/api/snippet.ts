@@ -13,6 +13,12 @@ export type Snippet = {
   updatedAt: Date;
 };
 
+export interface UserSnippet extends Snippet {
+  user: {
+    name: string;
+  };
+}
+
 export async function upsertSnippet({ request }: { request: Request }) {
   const formData = await request.formData();
   const snippet = createSnippetStore;
@@ -44,7 +50,9 @@ export async function upsertSnippet({ request }: { request: Request }) {
   return result;
 }
 
-export async function getAllSnippets(): Promise<Snippet[] | { error: string }> {
+export async function getAllSnippets(): Promise<
+  UserSnippet[] | { error: string }
+> {
   const token = createUserStore.getState().token;
   const response = await fetch("/api/snippet", {
     method: "GET",
@@ -58,7 +66,7 @@ export async function getAllSnippets(): Promise<Snippet[] | { error: string }> {
     return { error: "Something went wrong" };
   }
 
-  const result: Promise<Snippet[]> = await response.json();
+  const result: Promise<UserSnippet[]> = await response.json();
   return result;
 }
 
@@ -66,9 +74,10 @@ export async function getSnippetById({
   params,
 }: { params: Params<string> }): Promise<Snippet | { error: string }> {
   const id = params.snippetId;
+  const user = params.user;
   const token = createUserStore.getState().token;
 
-  const response = await fetch(`/api/snippet/${id}`, {
+  const response = await fetch(`/api/snippet/${user}/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

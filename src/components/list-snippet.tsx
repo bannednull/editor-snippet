@@ -1,4 +1,4 @@
-import type { Snippet } from "@/api/snippet";
+import type { UserSnippet } from "@/api/snippet";
 import iconLang from "@/components/lang";
 import React from "react";
 import { Link, useFetcher } from "react-router-dom";
@@ -7,7 +7,7 @@ import { Skeleton } from "./ui/skeleton";
 export const ListSnippet = () => {
   const [hasLoaded, setHasLoaded] = React.useState(false);
 
-  const fetcher = useFetcher<Snippet[] | { error: string }>({
+  const fetcher = useFetcher<UserSnippet[] | { error: string }>({
     key: "snippets",
   });
 
@@ -36,7 +36,7 @@ export const ListSnippet = () => {
         return (
           <li key={snippet.id}>
             <Link
-              to={`/${snippet.uuid}`}
+              to={`/${snippet.user.name}/${snippet.uuid}`}
               className="p-2 flex items-start gap-2 hover:bg-background rounded-md text-muted-foreground leading-none"
             >
               {IconComponent && <IconComponent />}
