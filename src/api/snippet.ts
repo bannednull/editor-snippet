@@ -17,6 +17,7 @@ export async function upsertSnippet({ request }: { request: Request }) {
   const formData = await request.formData();
   const snippet = createSnippetStore;
   const title = formData.get("title") as string;
+  const uuid = formData.get("uuid") as string;
   const token = createUserStore.getState().token;
   const lang = snippet.getState().lang;
   const code = snippet.getState().code;
@@ -31,7 +32,7 @@ export async function upsertSnippet({ request }: { request: Request }) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, lang, code }),
+    body: JSON.stringify({ title, lang, code, uuid }),
   });
 
   if (!response.ok) {

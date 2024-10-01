@@ -2,6 +2,7 @@ import { useFetcherWithReset } from "@/hooks/useUtils";
 import { createSnippetStore } from "@/stores/snippets";
 import { Save } from "lucide-react";
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useShallow } from "zustand/shallow";
 import { Button } from "./ui/button";
 
@@ -9,6 +10,8 @@ export default function SaveSnippet() {
   const { title } = createSnippetStore(
     useShallow((state) => ({ title: state.title })),
   );
+
+  const params = useParams<{ snippetId: string }>();
 
   const fetcher = useFetcherWithReset<{ error: string }>();
 
@@ -30,6 +33,7 @@ export default function SaveSnippet() {
         action="/snippet"
         className="flex items-center w-full gap-3"
       >
+        <input type="hidden" name="uuid" value={params.snippetId ?? ""} />
         <input
           name="title"
           type="text"
