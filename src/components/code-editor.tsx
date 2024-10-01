@@ -5,11 +5,12 @@ import CodeMirror from "@uiw/react-codemirror";
 import React from "react";
 import { useShallow } from "zustand/shallow";
 
-export const CodeEditor = () => {
+export const CodeEditor = React.memo(({ value }: { value: string }) => {
+  console.log("CodeEditor");
   const { basicSetup, theme } = useEditor();
 
-  const { code, lang } = createSnippetStore(
-    useShallow((state) => ({ code: state.code, lang: state.lang })),
+  const { lang } = createSnippetStore(
+    useShallow((state) => ({ lang: state.lang })),
   );
 
   const extensions = React.useMemo(
@@ -27,11 +28,11 @@ export const CodeEditor = () => {
       basicSetup={basicSetup}
       extensions={extensions}
       theme={theme()}
-      value={code}
+      value={value}
       readOnly={false}
       onChange={handleChange}
     />
   );
-};
+});
 
 export default CodeEditor;

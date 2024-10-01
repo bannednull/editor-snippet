@@ -29,7 +29,7 @@ export default function App() {
   return (
     <div className="flex-grow overflow-auto">
       <React.Suspense fallback={<CodeLoader />}>
-        <LazyCodeEditor />
+        <LazyCodeEditor value={snippet?.code ?? ""} />
       </React.Suspense>
     </div>
   );
