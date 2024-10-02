@@ -12,14 +12,29 @@ Este proyecto utiliza las siguientes tecnologías:
 
 ### 🌟 Características
 
-- Interfaz moderna: UI limpia y fácil de usar.
+- Editor de código personalizado
+- VSCode Snippet extension (WIP)
+- IA Chat sugerencias (WIP)
+
+### 📝 Contribuyendo
+
+Si deseas contribuir a este proyecto, puedes hacerlo sin problemas. Aquí hay algunas formas de contribuir:
+
+#### 🐛 Reportando errores
+
+Si encuentras un error en el código, por favor, abre un [issue](https://github.com/fjakeni/bakan/issues/new)
+
+#### 💡 Sugerencias
+
+Si tienes alguna sugerencia para mejorar el código, por favor, abre un [issue](https://github.com/fjakeni/bakan/issues/new)
+
 
 ### ✅ Por hacer
 
 - [ ] Screenshots del código personalizado. (wip)
 - [ ] Linter y formateador de código.
 - [x] Backend: usuarios y autenticación.
-- [ ] Backend: base de datos para la gestión de snippets.
+- [x] Backend: base de datos para la gestión de snippets. [#bakan-server](https://github.com/jsstoni/bakan-server)
 - [ ] IA Chat sugerencias (openai).
 - [ ] Integración con GitHub.
 
