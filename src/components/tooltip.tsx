@@ -7,9 +7,7 @@ import {
 
 export default function NewTooltip({
   children,
-  content,
-  side,
-  align,
+  ...props
 }: {
   children: React.ReactNode;
   content: string;
@@ -20,8 +18,12 @@ export default function NewTooltip({
     <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent side={side} align={align} className="text-xs">
-          {content}
+        <TooltipContent
+          side={props.side}
+          align={props.align}
+          className="text-xs"
+        >
+          {props.content}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

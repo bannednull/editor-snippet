@@ -6,8 +6,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import React from "react";
 import { useShallow } from "zustand/shallow";
 
-export const CodeEditor = React.memo(({ value }: { value: string }) => {
-  console.log;
+export const CodeEditor = React.memo((props: { value: string }) => {
   const { basicSetup, theme } = useEditor();
 
   const { lang } = createSnippetStore(
@@ -29,7 +28,7 @@ export const CodeEditor = React.memo(({ value }: { value: string }) => {
       basicSetup={basicSetup}
       extensions={extensions}
       theme={theme()}
-      value={value}
+      value={props.value}
       readOnly={false}
       onChange={handleChange}
     />
