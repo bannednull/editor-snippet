@@ -3,7 +3,8 @@
 <br>
 <br>
 Este proyecto utiliza las siguientes tecnologías:
-[Vite](https://vitejs.dev)
+
+- [Vite](https://vitejs.dev)
 - Lenguaje: [TypeScript](https://www.typescriptlang.org)
 - Frontend: [React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com), [shadcn/ui](https://ui.shadcn.com), [Lucide Icons](https://lucide.dev/icons)
 - Editor: [React CodeMirror](https://uiwjs.github.io/react-codemirror/), [CodeMirror](https://codemirror.net)
