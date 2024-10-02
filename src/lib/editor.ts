@@ -32,6 +32,9 @@ export const themeExtension = (theme: string | undefined): Extension => {
       "&": {
         height: "100%",
       },
+      ".cm-content": {
+        padding: "10px",
+      },
     }),
   ];
 };

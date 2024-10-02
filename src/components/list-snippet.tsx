@@ -37,7 +37,7 @@ export const ListSnippet = () => {
           <li key={snippet.id}>
             <Link
               to={`/${snippet.user.name}/${snippet.uuid}`}
-              className="p-2 flex items-start gap-2 hover:bg-background rounded-md text-muted-foreground leading-none"
+              className="p-2 flex items-start gap-2 hover:bg-background rounded-md text-muted-foreground leading-none text-sm"
             >
               {IconComponent && <IconComponent />}
               <span className="leading-tight">{snippet.title}</span>

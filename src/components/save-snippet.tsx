@@ -37,7 +37,7 @@ export default function SaveSnippet() {
         <input
           name="title"
           type="text"
-          className="bg-transparent py-1 px-3 focus:outline-none w-full text-sm"
+          className="bg-transparent py-1 px-3 focus:outline-none w-full text-sm text-muted-foreground"
           placeholder="Untitled snippet"
           value={title}
           onChange={onChange}
