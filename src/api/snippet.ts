@@ -1,3 +1,4 @@
+import { get, post } from "@/lib/fetch";
 import { createSnippetStore } from "@/stores/snippets";
 import { createUserStore } from "@/stores/users";
 import type { Params } from "react-router-dom";
@@ -32,20 +33,16 @@ export async function upsertSnippet({ request }: { request: Request }) {
     return { error: "Complete the form" };
   }
 
-  const response = await fetch("/api/snippet", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+  const result = await post<Snippet>(
+    "/api/snippet",
+    { title, lang, code, uuid },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-    body: JSON.stringify({ title, lang, code, uuid }),
-  });
+  );
 
-  if (!response.ok) {
-    return { error: "Something went wrong" };
-  }
-
-  const result: Promise<Snippet> = await response.json();
   console.log(result);
   return result;
 }
@@ -54,19 +51,13 @@ export async function getAllSnippets(): Promise<
   UserSnippet[] | { error: string }
 > {
   const token = createUserStore.getState().token;
-  const response = await fetch("/api/snippet", {
-    method: "GET",
+
+  const result = await get<UserSnippet[]>("/api/snippet", {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
 
-  if (!response.ok) {
-    return { error: "Something went wrong" };
-  }
-
-  const result: Promise<UserSnippet[]> = await response.json();
   return result;
 }
 
@@ -77,18 +68,11 @@ export async function getSnippetById({
   const user = params.user;
   const token = createUserStore.getState().token;
 
-  const response = await fetch(`/api/snippet/${user}/${id}`, {
-    method: "GET",
+  const result = await get<Snippet>(`/api/snippet/${user}/${id}`, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
 
-  if (!response.ok) {
-    return { error: "Something went wrong" };
-  }
-
-  const result: Promise<Snippet> = await response.json();
   return result;
 }

@@ -1,3 +1,4 @@
+import { post } from "@/lib/fetch";
 import { createUserStore } from "@/stores/users";
 
 export async function register({ request }: { request: Request }) {
@@ -13,17 +14,12 @@ export async function register({ request }: { request: Request }) {
       return { error: "Passwords don't match" };
     }
     try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password, repassword: repeat }),
+      await post("/api/register", {
+        name,
+        email,
+        password,
+        repassword: repeat,
       });
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
 
       return { message: "Registered successfully" };
     } catch (error) {
@@ -44,19 +40,10 @@ export async function login({ request }: { request: Request }) {
 
   if (email && password) {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-
-      const result = await response.json();
+      const result = await post<{ name: string; email: string; token: string }>(
+        "/api/login",
+        { email, password },
+      );
 
       createUserStore.setState({
         isAuth: true,
