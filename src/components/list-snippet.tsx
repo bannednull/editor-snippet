@@ -1,7 +1,8 @@
 import type { UserSnippet } from "@/api/snippet";
 import iconLang from "@/components/lang";
+import { cn } from "@/lib/utils";
 import React from "react";
-import { Link, useFetcher } from "react-router-dom";
+import { NavLink, useFetcher } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
 
 export const ListSnippet = () => {
@@ -35,13 +36,18 @@ export const ListSnippet = () => {
         const IconComponent = iconLang[snippet.lang] || null;
         return (
           <li key={snippet.id}>
-            <Link
+            <NavLink
               to={`/${snippet.user.name}/${snippet.uuid}`}
-              className="p-2 flex items-start gap-2 hover:bg-background rounded-md text-muted-foreground leading-none text-sm"
+              className={({ isActive }) =>
+                cn(
+                  "p-2 flex items-start gap-2 hover:bg-background rounded-md text-muted-foreground leading-none text-sm",
+                  { "bg-background/60": isActive },
+                )
+              }
             >
               {IconComponent && <IconComponent />}
               <span className="leading-tight">{snippet.title}</span>
-            </Link>
+            </NavLink>
           </li>
         );
       })}
