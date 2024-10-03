@@ -31,6 +31,13 @@ const router = createBrowserRouter([
       {
         path: ":user/:snippetId",
         loader: getSnippetById,
+        shouldRevalidate: (request) => {
+          // only revalidate if the current URL is the same as the one we're requesting
+          const isFormAction = request.formAction === "/snippet";
+          const isSameRoute =
+            request.currentUrl.pathname === request.nextUrl.pathname;
+          return !(isFormAction || isSameRoute);
+        },
         element: <App />,
       },
     ],
