@@ -8,6 +8,7 @@ import {
   type Extension,
   keymap,
 } from "@uiw/react-codemirror";
+import { post } from "./fetch";
 
 export const basicSetup: BasicSetupOptions = {
   searchKeymap: false,
@@ -56,7 +57,6 @@ const supportedLanguages = [
   "ruby",
   "php",
   "javascript",
-  "dart",
 ];
 
 export const languageSupported = langNames
@@ -79,22 +79,59 @@ export const capitalizeLangName = (lang: LanguageName): string => {
   return specialCases[lang] || name;
 };
 
-const getSelection = (view: EditorView) => {
+/* const getSelection = (view: EditorView) => {
   const { state } = view;
   const range = state.selection.main;
   const startLine = state.doc.lineAt(range.from).number;
   const endLine = state.doc.lineAt(range.to).number;
   const selected = state.doc.sliceString(range.from, range.to);
   return { startLine, endLine, selected, isSelected: true };
-};
+}; */
 
 export const chatSuggestion = (): Extension => {
   return keymap.of([
-    {
+    /*     {
       key: "Ctrl-k",
       run: (view: EditorView) => {
         const selected = getSelection(view);
         createSnippetStore.setState({ selection: selected });
+        return true;
+      },
+    }, */
+    {
+      key: "Ctrl-l",
+      preventDefault: true,
+      run: (view: EditorView) => {
+        const {
+          state: { doc, selection },
+          dispatch,
+        } = view;
+        const range = selection.main;
+        const line = doc.line(doc.lineAt(range.from).number);
+        const regex = /^\s*(->|#|\/\/)\s*(\S.*)$/;
+
+        const match = line.text.match(regex);
+        if (match) {
+          const selected = match[2];
+          const lang = createSnippetStore.getState().lang;
+
+          post<{ message: string }>("/api/chat/generate", {
+            language: lang,
+            prompt: selected,
+          }).then((res) => {
+            if ("error" in res) {
+              return;
+            }
+            dispatch({
+              changes: {
+                from: line.from,
+                to: line.to,
+                insert: `${line.text}\n${res.message}\n`,
+              },
+            });
+          });
+        }
+        console.log("no match");
         return true;
       },
     },

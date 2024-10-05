@@ -2,7 +2,6 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import type { Snippet } from "./api/snippet";
 import { CodeLoader } from "./components/code-loader";
-import CodeSuggestion from "./components/code-suggestion";
 import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
 import NotFound from "./components/not-found";
@@ -44,8 +43,6 @@ export default function App() {
         <LineColumn />
         <ComboLang />
       </div>
-
-      <CodeSuggestion />
     </>
   );
 }
