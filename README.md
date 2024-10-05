@@ -7,7 +7,7 @@ Este proyecto utiliza las siguientes tecnologías:
 - [Vite](https://vitejs.dev)
 - Lenguaje: [TypeScript](https://www.typescriptlang.org)
 - Frontend: [React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com), [shadcn/ui](https://ui.shadcn.com), [Lucide Icons](https://lucide.dev/icons)
-- Editor: [React CodeMirror](https://uiwjs.github.io/react-codemirror/), [CodeMirror](https://codemirror.net)
+- Editor: [Monaco Editor React](https://monaco-react.surenatoyan.com/), [Monaco Editor](https://microsoft.github.io/monaco-editor/)
 - Estado: [Zustand](https://github.com/pmndrs/zustand)
 - Formato y Linter: [Biomejs](https://biomejs.dev)
 

@@ -1,14 +1,12 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import type { Snippet } from "./api/snippet";
-import { CodeLoader } from "./components/code-loader";
+import CodeEditor from "./components/code-editor";
 import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
 import NotFound from "./components/not-found";
 import SaveSnippet from "./components/save-snippet";
 import { createSnippetStore } from "./stores/snippets";
-
-const LazyCodeEditor = React.lazy(() => import("./components/code-editor"));
 
 export default function App() {
   const snippet = useLoaderData() as Snippet | { error: string };
@@ -34,9 +32,7 @@ export default function App() {
       <SaveSnippet />
 
       <div className="flex-grow overflow-auto">
-        <React.Suspense fallback={<CodeLoader />}>
-          <LazyCodeEditor value={snippet?.code ?? ""} />
-        </React.Suspense>
+        <CodeEditor value={snippet?.code ?? ""} />
       </div>
 
       <div className="bg-black/40 text-muted-foreground border-t flex items-center gap-2 text-xs px-2">
