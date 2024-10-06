@@ -1,4 +1,4 @@
-import { type UserState, createUserStore } from "@/stores/users";
+import { type UserState, createUserStore } from "@/stores/users-store";
 import React from "react";
 
 export const UserContext = React.createContext<UserState | null>(null);

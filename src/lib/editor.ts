@@ -1,5 +1,5 @@
 import { post } from "@/lib/fetch";
-import { createSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets-store";
 import type { Monaco, OnMount } from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 

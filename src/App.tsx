@@ -6,7 +6,7 @@ import ComboLang from "./components/combo-lang";
 import LineColumn from "./components/line-column";
 import NotFound from "./components/not-found";
 import SaveSnippet from "./components/save-snippet";
-import { createSnippetStore } from "./stores/snippets";
+import { createSnippetStore } from "./stores/snippets-store";
 
 export default function App() {
   const snippet = useLoaderData() as Snippet | { error: string };

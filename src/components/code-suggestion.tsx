@@ -1,4 +1,4 @@
-import { createSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets-store";
 import { CornerDownLeft, XCircle } from "lucide-react";
 import { useShallow } from "zustand/shallow";
 import { Button } from "./ui/button";

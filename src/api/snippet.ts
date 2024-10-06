@@ -1,6 +1,6 @@
 import { get, post } from "@/lib/fetch";
-import { createSnippetStore } from "@/stores/snippets";
-import { createUserStore } from "@/stores/users";
+import { createSnippetStore } from "@/stores/snippets-store";
+import { createUserStore } from "@/stores/users-store";
 import type { Params } from "react-router-dom";
 
 export type Snippet = {

@@ -1,6 +1,6 @@
 import { CodeLoader } from "@/components/code-loader";
 import { handleEditorDidMount } from "@/lib/editor";
-import { createSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets-store";
 import { Editor } from "@monaco-editor/react";
 import React from "react";
 import { useShallow } from "zustand/shallow";

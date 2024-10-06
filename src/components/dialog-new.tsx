@@ -1,4 +1,4 @@
-import { createSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets-store";
 import { Plus } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";

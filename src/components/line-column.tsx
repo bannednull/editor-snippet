@@ -1,4 +1,4 @@
-import { createSnippetStore } from "@/stores/snippets";
+import { createSnippetStore } from "@/stores/snippets-store";
 import { useShallow } from "zustand/shallow";
 
 export default function LineColumn() {

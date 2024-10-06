@@ -1,5 +1,5 @@
 import { getFirstLetter } from "@/lib/utils";
-import { useUserStore } from "@/stores/users";
+import { useUserStore } from "@/stores/users-store";
 import DialogNew from "./dialog-new";
 import { ListSnippet } from "./list-snippet";
 import SignIn from "./sign-in";

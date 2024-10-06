@@ -1,5 +1,5 @@
 import { post } from "@/lib/fetch";
-import { createUserStore } from "@/stores/users";
+import { createUserStore } from "@/stores/users-store";
 
 export async function register({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -44,6 +44,10 @@ export async function login({ request }: { request: Request }) {
         "/api/login",
         { email, password },
       );
+
+      if ("error" in result) {
+        return { error: result.error };
+      }
 
       createUserStore.setState({
         isAuth: true,

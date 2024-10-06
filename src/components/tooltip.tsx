@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -9,7 +10,7 @@ export default function NewTooltip({
   children,
   ...props
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   content: string;
   side?: "top" | "bottom" | "right" | "left";
   align?: "start" | "center" | "end";

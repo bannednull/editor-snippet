@@ -8,7 +8,12 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", "dist", "build", "public", "coverage"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      "build",
+      "public"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -19,7 +24,12 @@
     "lineEnding": "lf",
     "lineWidth": 80,
     "attributePosition": "auto",
-    "bracketSpacing": true
+    "bracketSpacing": true,
+    "ignore": [
+      "node_modules",
+      "dist",
+      "coverage"
+    ]
   },
   "organizeImports": {
     "enabled": true
@@ -28,8 +38,9 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "style": {
-        "noNonNullAssertion": "off"
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noSelfAssign": "error"
       },
       "a11y": {
         "noSvgWithoutTitle": "off"
@@ -39,26 +50,19 @@
       },
       "suspicious": {
         "noArrayIndexKey": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       }
     }
   },
-  "javascript": {
-    "formatter": {
-      "jsxQuoteStyle": "double",
-      "quoteProperties": "asNeeded",
-      "trailingCommas": "all",
-      "semicolons": "always",
-      "arrowParentheses": "always",
-      "bracketSameLine": false,
-      "quoteStyle": "double",
-      "attributePosition": "auto",
-      "bracketSpacing": true
-    },
-    "globals": ["React", "JSX"]
-  },
   "overrides": [
     {
-      "include": ["*.ts?(x)", "*.js?(x)", "*.mjs"]
+      "include": [
+        "*.ts?(x)",
+        "*.js?(x)",
+        "*.mjs"
+      ]
     }
   ]
 }

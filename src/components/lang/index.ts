@@ -1,3 +1,5 @@
+import type { FC } from "react";
+
 import c from "./c";
 import cpp from "./cpp";
 import csharp from "./csharp";
@@ -16,7 +18,7 @@ import rust from "./rust";
 import sql from "./sql";
 import typescript from "./typescript";
 
-const iconLang: { [key: string]: React.FC } = {
+const iconLang: { [key: string]: FC } = {
   c: c,
   cpp: cpp,
   csharp: csharp,
