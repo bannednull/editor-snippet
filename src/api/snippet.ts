@@ -52,6 +52,8 @@ export async function getAllSnippets(): Promise<
 > {
   const token = createUserStore.getState().token;
 
+  if (!token) return { error: "You need to be logged in to see snippets" };
+
   const result = await get<UserSnippet[]>("/api/snippet", {
     headers: {
       Authorization: `Bearer ${token}`,
