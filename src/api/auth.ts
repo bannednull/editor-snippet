@@ -46,7 +46,7 @@ export async function login({ request }: { request: Request }) {
       );
 
       if ("error" in result) {
-        return { error: result.error };
+        return { error: "invalid email or password" };
       }
 
       createUserStore.setState({
