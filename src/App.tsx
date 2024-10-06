@@ -35,7 +35,7 @@ export default function App() {
         <CodeEditor value={snippet?.code ?? ""} />
       </div>
 
-      <div className="bg-black/40 text-muted-foreground border-t flex items-center gap-2 text-xs px-2">
+      <div className="text-muted-foreground border-t flex items-center gap-2 text-xs px-6">
         <LineColumn />
         <ComboLang />
       </div>

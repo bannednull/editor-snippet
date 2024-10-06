@@ -27,7 +27,7 @@ export default function SaveSnippet() {
   const status = fetcher.state === "submitting";
 
   return (
-    <div className="bg-black/40 flex items-center border-b p-2">
+    <div className="flex items-center border-b p-2">
       <fetcher.Form
         method="post"
         action="/snippet"
