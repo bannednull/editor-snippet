@@ -3,6 +3,10 @@ import { createSnippetStore } from "@/stores/snippets-store";
 import type { Monaco, OnMount } from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 
+export type Languages = "html" | "javascript" | "typescript";
+
+export const languages: Languages[] = ["html", "javascript", "typescript"];
+
 const generateAndInsertCode = (
   editor: editor.IStandaloneCodeEditor,
   monaco: Monaco,
