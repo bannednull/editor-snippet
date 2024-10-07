@@ -1,9 +1,9 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import type { Snippet } from "./api/snippet";
-import CodeEditor from "./components/code-editor";
-import ComboLang from "./components/combo-lang";
-import LineColumn from "./components/line-column";
+import CodeEditor from "./components/editor/code-editor";
+import ComboLang from "./components/editor/combo-lang";
+import LineColumn from "./components/editor/line-column";
 import NotFound from "./components/not-found";
 import SaveSnippet from "./components/save-snippet";
 import { createSnippetStore } from "./stores/snippets-store";

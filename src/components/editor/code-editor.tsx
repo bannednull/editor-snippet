@@ -1,4 +1,4 @@
-import { CodeLoader } from "@/components/code-loader";
+import { CodeLoader } from "@/components/editor/code-loader";
 import { handleEditorDidMount } from "@/lib/editor";
 import { createSnippetStore } from "@/stores/snippets-store";
 import { Editor } from "@monaco-editor/react";

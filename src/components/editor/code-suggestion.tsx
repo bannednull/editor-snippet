@@ -1,8 +1,8 @@
 import { createSnippetStore } from "@/stores/snippets-store";
 import { CornerDownLeft, XCircle } from "lucide-react";
 import { useShallow } from "zustand/shallow";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 export default function CodeSuggestion() {
   const {

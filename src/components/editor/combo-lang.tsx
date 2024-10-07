@@ -3,15 +3,15 @@ import { createSnippetStore } from "@/stores/snippets-store";
 import { Braces } from "lucide-react";
 import React from "react";
 import { useShallow } from "zustand/shallow";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   Command,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-} from "./ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+} from "../ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 export default function ComboLang() {
   const [open, setOpen] = React.useState(false);
