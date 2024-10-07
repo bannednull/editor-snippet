@@ -1,4 +1,5 @@
 import type { Snippet } from "@/api/snippet";
+import type { Languages } from "@/lib/editor";
 import { create } from "zustand";
 
 export interface SelectEditor {
@@ -9,7 +10,7 @@ export interface SelectEditor {
 }
 
 interface SnippetState {
-  lang: "javascript" | "typescript";
+  lang: Languages;
   code: string;
   title: string;
   line: number;
@@ -30,7 +31,7 @@ export const createSnippetStore = create<SnippetState>()((set) => ({
     set((state) => ({ selection: { ...state.selection, isSelected } })),
   setSnippet: (snippet) =>
     set(() => ({
-      lang: snippet.lang as "javascript" | "typescript",
+      lang: snippet.lang as Languages,
       code: snippet.code,
       title: snippet.title,
       line: 1,

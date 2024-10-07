@@ -1,3 +1,4 @@
+import { type Languages, languages } from "@/lib/editor";
 import { createSnippetStore } from "@/stores/snippets-store";
 import { Braces } from "lucide-react";
 import React from "react";
@@ -33,13 +34,13 @@ export default function ComboLang() {
           <CommandInput placeholder="select language" />
           <CommandList>
             <CommandGroup>
-              {["javascript", "typescript"].map((lang) => (
+              {languages.map((lang) => (
                 <CommandItem
                   key={lang}
                   value={lang}
                   onSelect={(currentValue) => {
                     createSnippetStore.setState({
-                      lang: currentValue as "javascript" | "typescript",
+                      lang: currentValue as Languages,
                     });
                     setOpen(false);
                   }}
