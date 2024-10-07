@@ -11,12 +11,6 @@ export const CodeEditor = React.memo((props: { value: string }) => {
     useShallow((state) => ({ lang: state.lang })),
   );
 
-  const handleChange = React.useCallback((value: string | undefined) => {
-    if (value) {
-      createSnippetStore.setState({ code: value });
-    }
-  }, []);
-
   return (
     <Editor
       height="100%"
@@ -29,7 +23,6 @@ export const CodeEditor = React.memo((props: { value: string }) => {
       }}
       value={props.value}
       loading={<CodeLoader />}
-      onChange={handleChange}
       onMount={handleEditorDidMount}
     />
   );

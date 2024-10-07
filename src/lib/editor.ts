@@ -2,6 +2,7 @@ import { post } from "@/lib/fetch";
 import { createSnippetStore } from "@/stores/snippets-store";
 import type { Monaco, OnMount } from "@monaco-editor/react";
 import { editor } from "monaco-editor";
+import { debounce } from "./utils";
 
 export type Languages = "html" | "javascript" | "typescript";
 
@@ -69,6 +70,14 @@ export const handleEditorDidMount: OnMount = (editor, monaco) => {
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyL, () =>
     generateAndInsertCode(editor, monaco),
   );
+
+  editor.onDidChangeModelContent(() => {
+    debounce(() => {
+      createSnippetStore.setState({
+        code: editor.getValue(),
+      });
+    }, 300)();
+  });
 
   editor.onDidChangeCursorPosition((e) => {
     createSnippetStore.setState({
