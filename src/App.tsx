@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import type { Snippet } from "./api/snippet";
 import CodeEditor from "./components/editor/code-editor";
 import ComboLang from "./components/editor/combo-lang";
+import CopyClip from "./components/editor/copy";
 import LineColumn from "./components/editor/line-column";
 import NotFound from "./components/not-found";
 import SaveSnippet from "./components/save-snippet";
@@ -38,6 +39,7 @@ export default function App() {
       <div className="text-muted-foreground border-t flex items-center gap-2 text-xs px-6">
         <LineColumn />
         <ComboLang />
+        <CopyClip />
       </div>
     </>
   );
