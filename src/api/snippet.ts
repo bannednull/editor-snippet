@@ -1,6 +1,6 @@
 import { get, post } from "@/lib/fetch";
-import { createSnippetStore } from "@/stores/snippets-store";
-import { createUserStore } from "@/stores/users-store";
+import { snippetStore } from "@/stores/snippets-store";
+import { userStore } from "@/stores/users-store";
 import type { Params } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -23,10 +23,10 @@ export interface UserSnippet extends Snippet {
 
 export async function upsertSnippet({ request }: { request: Request }) {
   const formData = await request.formData();
-  const snippet = createSnippetStore;
+  const snippet = snippetStore;
   const title = formData.get("title") as string;
   const uuid = formData.get("uuid") as string;
-  const token = createUserStore.getState().token;
+  const token = userStore.getState().token;
   const lang = snippet.getState().lang;
   const code = snippet.getState().code;
 
@@ -54,7 +54,7 @@ export async function upsertSnippet({ request }: { request: Request }) {
 export async function getAllSnippets(): Promise<
   UserSnippet[] | { error: string }
 > {
-  const token = createUserStore.getState().token;
+  const token = userStore.getState().token;
 
   if (!token) return { error: "You need to be logged in to see snippets" };
 
@@ -72,7 +72,7 @@ export async function getSnippetById({
 }: { params: Params<string> }): Promise<Snippet | { error: string }> {
   const id = params.snippetId;
   const user = params.user;
-  const token = createUserStore.getState().token;
+  const token = userStore.getState().token;
 
   const result = await get<Snippet>(`/api/snippet/${user}/${id}`, {
     headers: {

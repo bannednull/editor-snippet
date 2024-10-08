@@ -1,5 +1,5 @@
 import { post } from "@/lib/fetch";
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import type { Monaco, OnMount } from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 import { debounce } from "./utils";
@@ -24,7 +24,7 @@ const generateAndInsertCode = (
 
   if (match) {
     const selected = match[2];
-    const lang = createSnippetStore.getState().lang;
+    const lang = snippetStore.getState().lang;
     post<{ message: string }>("/api/chat/generate", {
       language: lang,
       prompt: selected,
@@ -73,14 +73,14 @@ export const handleEditorDidMount: OnMount = (editor, monaco) => {
 
   editor.onDidChangeModelContent(() => {
     debounce(() => {
-      createSnippetStore.setState({
+      snippetStore.setState({
         code: editor.getValue(),
       });
     }, 300)();
   });
 
   editor.onDidChangeCursorPosition((e) => {
-    createSnippetStore.setState({
+    snippetStore.setState({
       line: e.position.lineNumber,
       column: e.position.column,
     });

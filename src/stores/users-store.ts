@@ -9,7 +9,7 @@ export interface UserState {
   setUsers: (name: string, email: string, token: string) => void;
 }
 
-export const createUserStore = create<UserState>()(
+export const userStore = create<UserState>()(
   devtools(
     persist(
       (set) => ({
@@ -36,4 +36,4 @@ const createBoundedUseStore = ((store) => (selector) =>
 
 type ExtractState<S> = S extends { getState: () => infer X } ? X : never;
 
-export const useUserStore = createBoundedUseStore(createUserStore);
+export const useUserStore = createBoundedUseStore(userStore);

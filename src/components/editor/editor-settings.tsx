@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { type OnOff, createEditorStore } from "@/stores/editor-store";
+import { type OnOff, editorStore } from "@/stores/editor-store";
 import { Settings } from "lucide-react";
 import { useShallow } from "zustand/shallow";
 import Radio from "../radio";
@@ -8,16 +8,15 @@ import { Input } from "../ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 export default function EditorSettings() {
-  const { minimap, tabSize, fontSize, wordWrap, lineNumbers } =
-    createEditorStore(
-      useShallow((state) => ({
-        minimap: state.minimap,
-        tabSize: state.tabSize,
-        fontSize: state.fontSize,
-        wordWrap: state.wordWrap,
-        lineNumbers: state.lineNumbers,
-      })),
-    );
+  const { minimap, tabSize, fontSize, wordWrap, lineNumbers } = editorStore(
+    useShallow((state) => ({
+      minimap: state.minimap,
+      tabSize: state.tabSize,
+      fontSize: state.fontSize,
+      wordWrap: state.wordWrap,
+      lineNumbers: state.lineNumbers,
+    })),
+  );
 
   return (
     <Popover>
@@ -43,7 +42,7 @@ export default function EditorSettings() {
             ["On", "m_on", "on"],
             ["Off", "m_off", "off"],
           ]}
-          onChange={(v) => createEditorStore.setState({ minimap: v === "on" })}
+          onChange={(v) => editorStore.setState({ minimap: v === "on" })}
         />
         <hr className="my-3" />
 
@@ -55,9 +54,7 @@ export default function EditorSettings() {
           type="number"
           min={1}
           max={10}
-          onChange={(e) =>
-            createEditorStore.setState({ tabSize: +e.target.value })
-          }
+          onChange={(e) => editorStore.setState({ tabSize: +e.target.value })}
           defaultValue={tabSize}
         />
         <hr className="my-3" />
@@ -72,7 +69,7 @@ export default function EditorSettings() {
             ["On", "w_on", "on"],
             ["Off", "w_off", "off"],
           ]}
-          onChange={(e) => createEditorStore.setState({ wordWrap: e as OnOff })}
+          onChange={(e) => editorStore.setState({ wordWrap: e as OnOff })}
         />
         <hr className="my-3" />
 
@@ -83,9 +80,7 @@ export default function EditorSettings() {
           id="fontSize"
           type="number"
           min={8}
-          onChange={(e) =>
-            createEditorStore.setState({ fontSize: +e.target.value })
-          }
+          onChange={(e) => editorStore.setState({ fontSize: +e.target.value })}
           defaultValue={fontSize}
         />
         <hr className="my-3" />
@@ -100,9 +95,7 @@ export default function EditorSettings() {
             ["On", "l_on", "on"],
             ["Off", "l_off", "off"],
           ]}
-          onChange={(e) =>
-            createEditorStore.setState({ lineNumbers: e as OnOff })
-          }
+          onChange={(e) => editorStore.setState({ lineNumbers: e as OnOff })}
         />
       </PopoverContent>
     </Popover>

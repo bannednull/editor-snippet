@@ -1,4 +1,4 @@
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import React from "react";
 import { useShallow } from "zustand/shallow";
 
@@ -7,9 +7,7 @@ export default function CodePreview() {
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const workerRef = React.useRef<Worker | null>(null);
 
-  const { code } = createSnippetStore(
-    useShallow((state) => ({ code: state.code })),
-  );
+  const { code } = snippetStore(useShallow((state) => ({ code: state.code })));
 
   React.useEffect(() => {
     workerRef.current = new Worker(new URL("../worker.js", import.meta.url));

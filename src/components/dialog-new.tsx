@@ -1,4 +1,4 @@
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import { Plus } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,11 +19,11 @@ export default function DialogNew() {
 
   const navigate = useNavigate();
 
-  const code = createSnippetStore(useShallow((state) => state.code));
+  const code = snippetStore(useShallow((state) => state.code));
 
   const handleNewSnippet = () => {
     setOpen(false);
-    createSnippetStore.setState({
+    snippetStore.setState({
       code: "",
       lang: "javascript",
       title: "",

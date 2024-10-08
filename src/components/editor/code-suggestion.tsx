@@ -1,4 +1,4 @@
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import { CornerDownLeft, XCircle } from "lucide-react";
 import { useShallow } from "zustand/shallow";
 import { Button } from "../ui/button";
@@ -8,7 +8,7 @@ export default function CodeSuggestion() {
   const {
     selection: { isSelected },
     setIsSelected,
-  } = createSnippetStore(
+  } = snippetStore(
     useShallow((state) => ({
       selection: state.selection,
       setIsSelected: state.setIsSelected,

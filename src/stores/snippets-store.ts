@@ -20,7 +20,7 @@ interface SnippetState {
   setSnippet: (snippet: Snippet) => void;
 }
 
-export const createSnippetStore = create<SnippetState>()((set) => ({
+export const snippetStore = create<SnippetState>()((set) => ({
   lang: "javascript",
   code: "",
   title: "",

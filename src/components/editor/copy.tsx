@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import { Copy } from "lucide-react";
 import NewTooltip from "../tooltip";
 
 export default function CopyClip() {
   const handleCopy = () => {
-    const code = createSnippetStore.getState().code;
+    const code = snippetStore.getState().code;
     navigator.clipboard.writeText(code).then(() => alert("copy"));
   };
+
   return (
     <NewTooltip content="Copy code">
       <Button

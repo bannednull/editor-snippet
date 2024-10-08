@@ -11,7 +11,7 @@ interface EditorState {
   lineNumbers: OnOff;
 }
 
-export const createEditorStore = create<EditorState>()(
+export const editorStore = create<EditorState>()(
   devtools(
     persist(
       (_) => ({

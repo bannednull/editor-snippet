@@ -1,5 +1,5 @@
 import { useFetcherWithReset } from "@/hooks/useUtils";
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import { Save } from "lucide-react";
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import NewTooltip from "./tooltip";
 import { Button } from "./ui/button";
 
 export default function SaveSnippet() {
-  const { title } = createSnippetStore(
+  const { title } = snippetStore(
     useShallow((state) => ({ title: state.title })),
   );
 
@@ -19,7 +19,7 @@ export default function SaveSnippet() {
 
   const onChange = React.useCallback(
     (ev: React.ChangeEvent<HTMLInputElement>) => {
-      createSnippetStore.setState({
+      snippetStore.setState({
         title: ev.target.value,
       });
     },

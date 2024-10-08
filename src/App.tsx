@@ -7,12 +7,12 @@ import CopyClip from "./components/editor/copy";
 import LineColumn from "./components/editor/line-column";
 import NotFound from "./components/not-found";
 import SaveSnippet from "./components/save-snippet";
-import { createSnippetStore } from "./stores/snippets-store";
+import { snippetStore } from "./stores/snippets-store";
 
 export default function App() {
   const snippet = useLoaderData() as Snippet | { error: string };
 
-  const setSnippet = createSnippetStore((state) => state.setSnippet);
+  const setSnippet = snippetStore((state) => state.setSnippet);
 
   if (snippet && "error" in snippet) {
     return (

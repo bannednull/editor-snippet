@@ -1,5 +1,5 @@
 import { type Languages, languages } from "@/lib/editor";
-import { createSnippetStore } from "@/stores/snippets-store";
+import { snippetStore } from "@/stores/snippets-store";
 import { Braces } from "lucide-react";
 import React from "react";
 import { useShallow } from "zustand/shallow";
@@ -16,7 +16,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 export default function ComboLang() {
   const [open, setOpen] = React.useState(false);
 
-  const lang = createSnippetStore(useShallow((state) => state.lang));
+  const lang = snippetStore(useShallow((state) => state.lang));
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -39,7 +39,7 @@ export default function ComboLang() {
                   key={lang}
                   value={lang}
                   onSelect={(currentValue) => {
-                    createSnippetStore.setState({
+                    snippetStore.setState({
                       lang: currentValue as Languages,
                     });
                     setOpen(false);

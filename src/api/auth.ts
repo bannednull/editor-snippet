@@ -1,5 +1,5 @@
 import { post } from "@/lib/fetch";
-import { createUserStore } from "@/stores/users-store";
+import { userStore } from "@/stores/users-store";
 
 export async function register({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -49,7 +49,7 @@ export async function login({ request }: { request: Request }) {
         return { error: "invalid email or password" };
       }
 
-      createUserStore.setState({
+      userStore.setState({
         isAuth: true,
         name: result.name,
         email: result.email,

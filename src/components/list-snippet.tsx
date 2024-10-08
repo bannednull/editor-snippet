@@ -1,14 +1,14 @@
 import type { UserSnippet } from "@/api/snippet";
 import iconLang from "@/components/lang";
 import { cn } from "@/lib/utils";
-import { createUserStore } from "@/stores/users-store";
+import { userStore } from "@/stores/users-store";
 import React from "react";
 import { NavLink, useFetcher } from "react-router-dom";
 import { useShallow } from "zustand/shallow";
 import { Skeleton } from "./ui/skeleton";
 
 export const ListSnippet = () => {
-  const { isAuth } = createUserStore(
+  const { isAuth } = userStore(
     useShallow((state) => ({ isAuth: state.isAuth })),
   );
 
