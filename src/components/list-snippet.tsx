@@ -1,11 +1,17 @@
 import type { UserSnippet } from "@/api/snippet";
 import iconLang from "@/components/lang";
 import { cn } from "@/lib/utils";
+import { createUserStore } from "@/stores/users-store";
 import React from "react";
 import { NavLink, useFetcher } from "react-router-dom";
+import { useShallow } from "zustand/shallow";
 import { Skeleton } from "./ui/skeleton";
 
 export const ListSnippet = () => {
+  const { isAuth } = createUserStore(
+    useShallow((state) => ({ isAuth: state.isAuth })),
+  );
+
   const [hasLoaded, setHasLoaded] = React.useState(false);
 
   const fetcher = useFetcher<UserSnippet[] | { error: string }>({
@@ -14,11 +20,13 @@ export const ListSnippet = () => {
 
   React.useEffect(() => {
     if (fetcher.state === "idle" && !fetcher.data) {
-      fetcher.load("/snippet");
+      if (isAuth) {
+        fetcher.load("/snippet");
+      }
     } else if (fetcher.data) {
       setHasLoaded(true);
     }
-  }, [fetcher]);
+  }, [fetcher, isAuth]);
 
   if (fetcher.data && "error" in fetcher.data) {
     return null;
