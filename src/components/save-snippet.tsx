@@ -5,6 +5,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useShallow } from "zustand/shallow";
 import EditorSettings from "./editor/editor-settings";
+import NewTooltip from "./tooltip";
 import { Button } from "./ui/button";
 
 export default function SaveSnippet() {
@@ -46,13 +47,15 @@ export default function SaveSnippet() {
 
         <EditorSettings />
 
-        <Button
-          type="submit"
-          variant="ghost"
-          className="py-1 px-3 h-auto rounded-md flex items-center text-sm ml-auto"
-        >
-          <Save className="mr-1" size={16} /> Save {status && "⏳"}
-        </Button>
+        <NewTooltip content="Save snippet">
+          <Button
+            type="submit"
+            variant="ghost"
+            className="size-auto py-1 px-2 rounded-md flex items-center text-sm ml-auto"
+          >
+            <Save size={22} strokeWidth={1} /> {status && "⏳"}
+          </Button>
+        </NewTooltip>
       </fetcher.Form>
     </div>
   );
