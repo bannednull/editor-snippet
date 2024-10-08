@@ -2,7 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Outlet } from "react-router-dom";
 import Aside from "./components/aside";
 import SessionProvider from "./components/session-provider";
-import { Toaster } from "./components/ui/toaster";
+import { Toaster } from "./components/ui/sonner";
 
 function Layout() {
   return (
@@ -15,8 +15,7 @@ function Layout() {
             <Outlet />
           </div>
         </div>
-
-        <Toaster />
+        <Toaster duration={1500} />
       </SessionProvider>
     </ThemeProvider>
   );

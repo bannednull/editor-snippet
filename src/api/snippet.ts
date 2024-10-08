@@ -2,6 +2,7 @@ import { get, post } from "@/lib/fetch";
 import { createSnippetStore } from "@/stores/snippets-store";
 import { createUserStore } from "@/stores/users-store";
 import type { Params } from "react-router-dom";
+import { toast } from "sonner";
 
 export type Snippet = {
   id: number;
@@ -30,7 +31,7 @@ export async function upsertSnippet({ request }: { request: Request }) {
   const code = snippet.getState().code;
 
   if (!title || !lang || !code) {
-    return { error: "Complete the form" };
+    return toast("Complete the form");
   }
 
   const result = await post<Snippet>(
@@ -43,7 +44,10 @@ export async function upsertSnippet({ request }: { request: Request }) {
     },
   );
 
-  console.log(result);
+  if ("error" in result) {
+    return toast(result.error);
+  }
+
   return result;
 }
 
