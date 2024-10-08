@@ -4,6 +4,7 @@ import { Save } from "lucide-react";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useShallow } from "zustand/shallow";
+import EditorSettings from "./editor/editor-settings";
 import { Button } from "./ui/button";
 
 export default function SaveSnippet() {
@@ -31,7 +32,7 @@ export default function SaveSnippet() {
       <fetcher.Form
         method="post"
         action="/snippet"
-        className="flex items-center w-full gap-3"
+        className="flex items-center w-full gap-1"
       >
         <input type="hidden" name="uuid" value={params.snippetId ?? ""} />
         <input
@@ -42,6 +43,9 @@ export default function SaveSnippet() {
           value={title}
           onChange={onChange}
         />
+
+        <EditorSettings />
+
         <Button
           type="submit"
           variant="ghost"
