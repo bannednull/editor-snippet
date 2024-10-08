@@ -21,8 +21,8 @@ export default function EditorSettings() {
 
   return (
     <Popover>
-      <PopoverTrigger>
-        <NewTooltip content="Editor settings">
+      <NewTooltip content="Editor settings">
+        <PopoverTrigger asChild>
           <Button
             type="button"
             variant="ghost"
@@ -30,8 +30,8 @@ export default function EditorSettings() {
           >
             <Settings size={22} strokeWidth={1} />
           </Button>
-        </NewTooltip>
-      </PopoverTrigger>
+        </PopoverTrigger>
+      </NewTooltip>
       <PopoverContent className="p-8">
         <label className="text-muted-foreground" htmlFor="minimap">
           Minimap
