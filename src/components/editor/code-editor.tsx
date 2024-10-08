@@ -12,14 +12,16 @@ export const CodeEditor = React.memo((props: { value: string }) => {
     useShallow((state) => ({ lang: state.lang })),
   );
 
-  const { minimap, tabSize, wordWrap, lineNumbers } = createEditorStore(
-    useShallow((state) => ({
-      minimap: state.minimap,
-      tabSize: state.tabSize,
-      wordWrap: state.wordWrap,
-      lineNumbers: state.lineNumbers,
-    })),
-  );
+  const { minimap, tabSize, fontSize, wordWrap, lineNumbers } =
+    createEditorStore(
+      useShallow((state) => ({
+        minimap: state.minimap,
+        tabSize: state.tabSize,
+        fontSize: state.fontSize,
+        wordWrap: state.wordWrap,
+        lineNumbers: state.lineNumbers,
+      })),
+    );
 
   return (
     <Editor
@@ -30,6 +32,7 @@ export const CodeEditor = React.memo((props: { value: string }) => {
         lineNumbers: lineNumbers,
         minimap: { enabled: minimap },
         tabSize: tabSize,
+        fontSize: fontSize,
         wrappingIndent: "indent",
         wordWrap: wordWrap,
       }}
