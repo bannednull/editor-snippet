@@ -1,4 +1,5 @@
 import { snippetStore } from "@/stores/snippets-store";
+import { useMonaco } from "@monaco-editor/react";
 import { Plus } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,8 @@ export default function DialogNew() {
 
   const navigate = useNavigate();
 
+  const monaco = useMonaco();
+
   const code = snippetStore(useShallow((state) => state.code));
 
   const handleNewSnippet = () => {
@@ -30,6 +33,10 @@ export default function DialogNew() {
       line: 0,
       column: 0,
     });
+    if (monaco) {
+      const editor = monaco.editor.getEditors()[0];
+      editor.setValue("");
+    }
     navigate("/");
   };
 
