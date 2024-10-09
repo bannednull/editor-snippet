@@ -17,6 +17,8 @@ Este proyecto utiliza las siguientes tecnologías:
 - VSCode Snippet extension (WIP)
 - IA Chat sugerencias (WIP)
 
+![bakan](/public/capture.png)
+
 ### 📝 Contribuyendo
 
 Si deseas contribuir a este proyecto, puedes hacerlo sin problemas. Aquí hay algunas formas de contribuir:
