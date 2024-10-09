@@ -1,4 +1,5 @@
 import { post } from "@/lib/fetch";
+import { editorStore } from "@/stores/editor-store";
 import { snippetStore } from "@/stores/snippets-store";
 import type { Monaco, OnMount } from "@monaco-editor/react";
 import { editor } from "monaco-editor";
@@ -55,6 +56,7 @@ const generateAndInsertCode = (
 };
 
 export const handleEditorDidMount: OnMount = (editor, monaco) => {
+  editorStore.setState({ monacoInstance: monaco });
   monaco.editor.defineTheme("custom", {
     base: "vs-dark",
     inherit: true,
