@@ -1,4 +1,4 @@
-![bakan](/public/banner.png)
+![bakan](/public/capture.png)
 <div align="center"><b>Bakan es un administrador de snippet de código abierto creado con React.</b></div>
 <br>
 <br>
@@ -16,8 +16,6 @@ Este proyecto utiliza las siguientes tecnologías:
 - Editor de código personalizado
 - VSCode Snippet extension (WIP)
 - IA Chat sugerencias (WIP)
-
-![bakan](/public/capture.png)
 
 ### 📝 Contribuyendo
 
