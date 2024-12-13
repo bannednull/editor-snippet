@@ -25,9 +25,9 @@ export default function EditorSettings() {
           <Button
             type="button"
             variant="ghost"
-            className="size-auto py-1 px-2 h-auto rounded-md flex items-center text-sm ml-auto"
+            className="size-auto py-1 px-2 h-auto rounded-md flex items-center text-sm"
           >
-            <Settings size={22} strokeWidth={1} />
+            <Settings size={14} className="mr-1" /> Settings
           </Button>
         </PopoverTrigger>
       </NewTooltip>

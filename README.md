@@ -34,8 +34,6 @@ Si tienes alguna sugerencia para mejorar el código, por favor, abre un [issue](
 
 - [ ] Screenshots del código personalizado. (wip)
 - [ ] Linter y formateador de código.
-- [x] Backend: usuarios y autenticación.
-- [x] Backend: base de datos para la gestión de snippets. [#bakan-server](https://github.com/jsstoni/bakan-server)
 - [ ] IA Chat sugerencias (openai).
 - [ ] Integración con GitHub.
 

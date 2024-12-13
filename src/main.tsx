@@ -3,49 +3,16 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import NotFound from "./components/not-found.tsx";
-import "./index.css";
-import { login, register } from "./api/auth.ts";
-import {
-  getAllSnippets,
-  getSnippetById,
-  upsertSnippet,
-} from "./api/snippet.ts";
 import ErrorPage from "./error-page.tsx";
 import Layout from "./layout.tsx";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <App /> },
-      {
-        path: "register",
-        action: register,
-      },
-      {
-        path: "login",
-        action: login,
-      },
-      {
-        path: ":user/:snippetId",
-        loader: getSnippetById,
-        shouldRevalidate: (request) => {
-          // only revalidate if the current URL is the same as the one we're requesting
-          const isFormAction = request.formAction === "/snippet";
-          const isSameRoute =
-            request.currentUrl.pathname === request.nextUrl.pathname;
-          return !(isFormAction || isSameRoute);
-        },
-        element: <App />,
-      },
-    ],
-  },
-  {
-    path: "/snippet",
-    loader: () => getAllSnippets(),
-    action: upsertSnippet,
+    children: [{ index: true, element: <App /> }],
   },
   {
     path: "*",

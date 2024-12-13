@@ -5,9 +5,9 @@ import type { Monaco, OnMount } from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 import { debounce } from "./utils";
 
-export type Languages = "html" | "javascript" | "typescript";
+export type Languages = "javascript" | "typescript";
 
-export const languages: Languages[] = ["html", "javascript", "typescript"];
+export const languages: Languages[] = ["javascript", "typescript"];
 
 const generateAndInsertCode = (
   editor: editor.IStandaloneCodeEditor,
